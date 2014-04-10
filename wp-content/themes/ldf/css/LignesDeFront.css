@@ -1,0 +1,71 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 2737326, 2014-01-31T10:30:06-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Century Gothic Std Bold by Monotype 
+ * URL: http://www.myfonts.com/fonts/mti/century-gothic/std-bold/
+ * Copyright: Copyright The Monotype Corporation. All rights reserved.
+ * Licensed pageviews: 250,000
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2737326
+ * 
+ * © 2014 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/29c4ae");
+
+@font-face {font-family: 'CenturyGothicStd-Bold';src: url('webfonts/29C4AE_0_0.eot');src: url('webfonts/29C4AE_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/29C4AE_0_0.woff') format('woff'),url('webfonts/29C4AE_0_0.ttf') format('truetype');}
+
+
+@font-face {
+    font-family: 'AkkuratRegular';
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-regular.eot');
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-regular.eot?#iefix') format('embedded-opentype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-regular.woff') format('woff'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-regular.ttf') format('truetype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-regular.svg#AkkuratRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratItalic';
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-italic.eot');
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-italic.eot?#iefix') format('embedded-opentype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-italic.woff') format('woff'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-italic.ttf') format('truetype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-italic.svg#AkkuratItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratBold';
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-bold.eot');
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-bold.eot?#iefix') format('embedded-opentype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-bold.woff') format('woff'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-bold.ttf') format('truetype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-bold.svg#AkkuratBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratBoldItalic';
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-bolditalic.eot');
+    src: url('webfonts/fonts_akkurat/lineto-akkurat-bolditalic.eot?#iefix') format('embedded-opentype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-bolditalic.woff') format('woff'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-bolditalic.ttf') format('truetype'),
+         url('webfonts/fonts_akkurat/lineto-akkurat-bolditalic.svg#AkkuratBoldItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

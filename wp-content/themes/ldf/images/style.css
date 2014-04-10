@@ -1,0 +1,478 @@
+/*
+Theme Name: LDF
+Theme URI: http://lignesdefront.fr
+Template:     twentythirteen
+Author: Tom WERSINGER 
+Author URI: http://tom-wersinger.com
+Description: Ligne de front theme
+Version: 1.1
+License: 
+License URI: 
+Tags: black, custom
+Text Domain: twentythirteen
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+
+body {
+   /* background: url("./images/flat.jpg") no-repeat scroll 0 0 / 100% auto rgba(0, 0, 0, 0);
+   */
+    margin: 0;
+    padding: 0;
+
+}
+html {
+    font-family:Akkurat;
+    
+}
+.gblack{border-bottom:1px solid #000; display:block; width:22px;}
+.upper{  text-transform: uppercase;}
+
+.fs13{
+      font-size: 13px;
+}
+.cgb, .cgb h2,  .cgb h3{
+    font-family: CenturyGothicStd-Bold; 
+    font-weight: normal; 
+    font-style: normal; 
+}
+
+.clr, 
+a, 
+.searchform span,
+.searchform input#s{
+	color:#ef312f;
+}
+.black_c{color:#000;}
+input[type="text"] , input[type="email"]{
+     border-color:#ef312f;
+     border-style: solid;
+     border-width: 1px 1px  2px 1px;
+      width: 61px;
+}
+.searchform input#s{
+    border:none;
+   border-bottom:2px solid #ef312f;
+
+
+}
+textarea{
+    border-color:#ef312f;
+    border-style: solid;
+    border-width:1px 1px 2px 1px;
+}
+.clr-bc{
+	border-color:#ef312f;
+	border-style: solid;
+    color: #EF312F;
+   
+}
+
+
+a{ text-decoration:none; }
+li.current-menu-item a, a:hover{color:#000;  transition:color .2s linear 0.1s;}
+.up{text-transform:uppercase;}
+
+
+.site-description, .site-sub-description {
+    font-size: 11px;
+    margin: 7px 0 0;
+    padding: 17px 0 2px;
+    text-align: center;
+}
+
+.site-description {
+     background: url("./images/red-line-65px.png") no-repeat center bottom;
+    border-style: solid;
+    border-width:5px 0 0 0;
+     padding-bottom: 12px;
+
+     
+
+}
+.site-sub-description {
+  
+    margin-bottom:3px;
+     padding-bottom: 12px;
+}
+
+.nav-menu {
+    list-style: none outside none;
+    margin: 0;
+    padding: 15px 0 0 15px;
+}
+.nav-menu li {
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.right-box {
+    border-width: 5px;
+    float: right;
+    margin-right: 28px;
+    margin-top: 28px;
+    padding: 10px 8px;
+    width:204px;
+}
+.thema-toggle {
+    background: url("./images/bottom-arrow.png") no-repeat scroll right center rgba(0, 0, 0, 0);
+    display: block;
+    margin-right: 15px;
+    padding: 4px 21px 2px 12px;
+}
+  
+ul.flat {
+    display: block;
+    float: left;
+    padding: 0 0 6px;
+    width: 100%;
+}
+ul.flat li {
+    border-width: 0 0 1px;
+    display: block;
+    float: left;
+    margin-left: 0;
+    padding-bottom: 6px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+ul.flat li:first-child {
+  
+    padding-left: 0;
+}
+ul.flat li a{
+   
+}
+
+#primary{float:left; width:100%;}
+
+a.lang{display:none;}
+a.lang.active_lang {
+    display: block;
+    float: left;
+    line-height: 1.3em;
+    margin-right: 4px;
+}
+.left-box {
+    border-width: 5px;
+    float: left;
+    margin-left: 29px;
+    margin-top: 28px;
+    min-height: 451px;
+    padding-top: 0;
+    width: 210px;
+}
+
+.head-box {
+    border-width: 5px;
+    padding-right: 0;
+}
+.nav-box{
+     border-width: 0px 5px 5px;
+}
+.nav-box h3 {
+    border-style: solid;
+    border-width: 5px 0 0;
+    margin-bottom: 9px;
+    padding-bottom: 0;
+    padding-top: 11px;
+}
+.head-box h1 {
+    /*jpg exist too*/
+    background: url("./images/logo.png") no-repeat scroll 0 0 transparent;
+    height: 110px;
+    margin: 14px 0 0 18px;
+    padding-left: 0;
+    padding-top: 0;
+    text-indent: -9999px;
+    width: 110px;
+
+    
+}
+
+
+/*thema nav*/
+.menu-menu-thematiques-container, 
+body.tax-thematique .menu-menu-thematiques-container.active{display: none;}
+
+body.tax-thematique .menu-menu-thematiques-container,
+.menu-menu-thematiques-container.active{display: block;}
+
+
+/*search*/
+
+.fa-search{
+        font-size: 19px;
+}
+.searchform {
+    margin: 0 0 13px;
+}
+.searchform input#s {
+    font-size: 11px;
+    line-height: 27px;
+    padding: 3px 0;
+    width: 176px;
+}
+.searchform input#searchsubmit {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    height: 17px;
+    margin-left: -17px;
+    width: 21px;
+}
+
+.fa-search {
+    float: left;
+    font-size: 22px;
+    padding-right: 2px;
+    padding-top: 5px;
+    transform: rotate(109deg);
+}
+.fa-search:hover {
+  color:#000;
+   
+}
+
+
+.lang_select {
+    background: url("./images/arrow-right.png") no-repeat scroll right 6px rgba(0, 0, 0, 0);
+    font-weight: bold;
+    padding: 4px 9px 0 0;
+}
+
+
+
+
+.facebook, .twitter {
+    float: right;
+    font-size: 15px;
+    margin-left: 7px;
+}
+body.loaded #main{
+   opacity: 1.0;
+     width: 680px;
+   overflow-x:hidden;
+     transition:width .1s linear 1s;
+
+}
+#main{
+    border: 5px solid #EF312F;
+    float: left;
+    margin-left: -4px;
+     margin-top: 8%;
+    width: 650px;
+    background:#fff;
+    padding:11px;
+      min-height: 550px;
+    opacity:0;
+    padding-left:24px;
+
+}
+#primary{
+width:525px;
+}
+
+
+/*scroll-pain :-) */
+.jspVerticalBar {
+    background: none repeat scroll 0 0 #F5B2A1;
+    height: 92%;
+    position: absolute;
+    right: 11px;
+    top: 11px;
+    width: 5px;
+}
+
+.jspDrag {
+    background: none repeat scroll 0 0 #EF312F;
+    border-radius: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    width: 5px;
+}
+.jspTrack {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    margin-right: 5px;
+    padding-right: 6px;
+    padding-top: 0;
+}
+.jspHorizontalBar .jspTrack, .jspHorizontalBar , .jspHorizontalBar .jspDrag {
+   display:none;
+}
+
+footer {
+    border-width: 5px 0 0;
+  
+    float: left;
+    height: auto;
+    margin: 0 auto 0;
+    padding-bottom: 0;
+    padding-top: 1%;
+ 
+	width:100%;
+	text-align:center;
+}
+
+
+.post-type-archive-agenda .entry_custom_date{
+    color:#000;
+}
+
+
+
+/*links page*/
+
+body.page-template-links-php{
+
+
+}
+
+body.post-type-archive-agenda article h1{
+    font-size: 1.2em;
+    margin: 7px 0;
+}
+body.post-type-archive-agenda article{
+        float: left;
+  padding: 20px 0 26px;
+}
+
+
+
+body.page-template-links-php article, body.post-type-archive-agenda article {
+    border-bottom: 1px solid #000000;
+    margin-bottom: 10px;
+  
+}
+body.page-template-links-php article {
+    width: 520px;
+  
+}
+
+
+.link-title{
+    font-size: 0.8em;
+    margin: 0;
+}
+.link-subtitle{ margin: 10px 0;}
+.link-content{ margin: 10px 0;}
+
+.entry-thumbnail{
+    float: left;
+    margin-right: 35px;
+    width: 250px;
+}
+.entry-thumbnail img{
+width:250px;
+height:auto;
+}
+.entry-right-part.has_thumb- {
+    float: left;
+    width: 600px;
+}
+.entry-right-part.has_thumb-1 {
+    float: left;
+    width: 300px;
+}
+
+
+.wp-caption-text{
+    border-bottom: 1px solid #000000;
+    float: right;
+    font-size: 12px;
+    margin: 2px 0 0 10px;
+    padding-bottom: 4px;
+
+}
+#zoom-holder{
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+#zoom-holder img{
+
+}
+/**/
+#tz {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:-1;
+}
+
+@media (max-width: 768px) {
+
+    body{
+        padding-top: 1%;
+    }
+	#page {
+    border-color: #FF0000;
+    border-style: solid;
+    border-width: 5px;
+    display: block;
+    float: left;
+    margin: 0 1% 3%;
+    padding: 0;
+    width: 96%;
+    }
+	.right-box {
+     border-width: 0px;
+    margin: 0;
+  
+    width: 98%;
+}
+.searchform {
+    float: left;
+    margin-right: 2%;
+       margin-bottom: 0;
+}
+.nav-box {
+    border-width: 0;
+}
+.left-box {
+    z-index:99;
+    border-width: 0px 5px;
+    margin-left: 0;
+    margin-top: 0;
+    padding-top: 0;
+   
+    width: 100%;
+}
+.head-box {
+    border-width: 5px 0 ;
+    padding-right: 0;
+}
+body.loaded #main{
+     width: 100%;
+}
+	#main {
+    border-width: 5px 0 0;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0;
+    width: 100%;
+    }
+    #primary{
+        width:70%;
+    }
+    .entry-right-part.has_thumb- {
+    float: left;
+    width: 100%;
+}
+.entry-right-part.has_thumb-1 {
+    float: left;
+    width: 100%;
+}
+.entry-thumbnail img {
+    height: auto;
+  width: 100%;
+}
+.entry-thumbnail {
+
+}
+
+}

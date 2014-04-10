@@ -1,0 +1,57 @@
+/*
+ * Legal Disclaimer
+ *
+ * These Fonts are licensed only for use on these domains and their subdomains:
+ * hear.fr
+ *
+ * It is illegal to download or use them on other websites.
+ *
+ * While the @font-face statements below may be modified by the client, this
+ * disclaimer may not be removed.
+ *
+ * Lineto.com, 2013
+ */
+
+@font-face {
+    font-family: 'AkkuratRegular';
+    src: url('fonts/lineto-akkurat-regular.eot');
+    src: url('fonts/lineto-akkurat-regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/lineto-akkurat-regular.woff') format('woff'),
+         url('fonts/lineto-akkurat-regular.ttf') format('truetype'),
+         url('fonts/lineto-akkurat-regular.svg#AkkuratRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratItalic';
+    src: url('fonts/lineto-akkurat-italic.eot');
+    src: url('fonts/lineto-akkurat-italic.eot?#iefix') format('embedded-opentype'),
+         url('fonts/lineto-akkurat-italic.woff') format('woff'),
+         url('fonts/lineto-akkurat-italic.ttf') format('truetype'),
+         url('fonts/lineto-akkurat-italic.svg#AkkuratItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratBold';
+    src: url('fonts/lineto-akkurat-bold.eot');
+    src: url('fonts/lineto-akkurat-bold.eot?#iefix') format('embedded-opentype'),
+         url('fonts/lineto-akkurat-bold.woff') format('woff'),
+         url('fonts/lineto-akkurat-bold.ttf') format('truetype'),
+         url('fonts/lineto-akkurat-bold.svg#AkkuratBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'AkkuratBoldItalic';
+    src: url('fonts/lineto-akkurat-bolditalic.eot');
+    src: url('fonts/lineto-akkurat-bolditalic.eot?#iefix') format('embedded-opentype'),
+         url('fonts/lineto-akkurat-bolditalic.woff') format('woff'),
+         url('fonts/lineto-akkurat-bolditalic.ttf') format('truetype'),
+         url('fonts/lineto-akkurat-bolditalic.svg#AkkuratBoldItalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}

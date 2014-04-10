@@ -12,7 +12,7 @@
 wp-content/*
 !wp-content/plugins/
 !wp-content/themes/
-!wp-content/lbp-css/
+!wp-content/lbp-css/ldf/
 !wp-content/wp-cache-config.php
 !wp-content/advanced-cache.php
 !wp-content/languages
