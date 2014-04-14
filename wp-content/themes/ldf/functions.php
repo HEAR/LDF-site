@@ -107,7 +107,7 @@ add_filter( 'get_search_form', 'my_search_form' );
 
 function ldf_scripts_styles() {
 	$rand = rand(5, 150000);
-	wp_enqueue_script( 'jrespond', get_stylesheet_directory_uri() . '/js/jRespond/js/jRespond.js', array( 'jquery' ), $rand, true );
+	wp_enqueue_script( 'jrespond', get_stylesheet_directory_uri() . '/js/jRespond.min.js', array( 'jquery' ), $rand, true );
 
 	wp_enqueue_script( 'mCustomScrollbar', get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '2013-07-18', true );
 	wp_enqueue_script( 'scrollpane_mousejs', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', array( 'jquery' ), '2013-07-18', true );
@@ -287,7 +287,7 @@ add_action('wp_head', 'custom_styles');
 function custom_styles() {
 	$out = ''; 
 	$out .='<style>';
-	$out .='.clr,a,.searchform span,.searchform input#s,.wpcf7-form p,.wpcf7-submit,#commentform #submit{color:#ef312f;} .searchform input#s{border-bottom:2px solid #ef312f;} textarea{border-color:#ef312f;}.clr-bc{border-color:#ef312f;color: #EF312F;}';
+	$out .='.clr,a,.searchform span,.searchform input#s,.wpcf7-form p,.wpcf7-submit,#commentform #submit, .site-description, .site-sub-description{color:#ef312f;} .searchform input#s{border-bottom:2px solid #ef312f;} textarea{border-color:#ef312f;}.clr-bc{border-color:#ef312f;color: #EF312F;}';
 	$out .='</style>';
 	echo $out;
 }

@@ -22,8 +22,7 @@
 				//contentWidth :'600px'
 			};
       		
-    		$('.scroll-pane').jScrollPane(settings);
-			
+    	
 			$("#main").css('height', body.height()-130)
 			$("#main").css('marginTop', 80)
 
@@ -39,10 +38,7 @@
 		
 		
 	
-		// http://jscrollpane.kelvinluck.com/settings.html
-
 	
-
 /*
 
 		$('#tz').tilezoom({	
@@ -135,96 +131,130 @@
 		}
 	} );
 
-	/**
-	 * Arranges footer widgets vertically.
-	 */
-var jRes = jRespond([
-    {
-        label: 'handheld',
-        enter: 0,
-        exit: 767
-    },{
-        label: 'tablet',
-        enter: 768,
-        exit: 990
-    },{
-        label: 'desktop',
-        enter: 991,
-        exit: 10000000
-    }
-]);
-
-jRes.addFunc(
 
 
 
-{
+
+	$isScrollBar = false;
+
+	var jRes = jRespond([
+	    {
+	        label: 'handheld',
+	        enter: 0,
+	        exit: 699
+	    },{
+	        label: 'tablet',
+	        enter: 700,
+	        exit: 991
+	    },{
+	        label: 'laptop',
+	        enter: 992,
+	        exit: 1199
+	    },{
+	        label: 'desktop',
+	        enter: 1200,
+	        exit: 10000
+	    }
+	]);
+
+	jRes.addFunc([
+	    {
+	        breakpoint: 'desktop',
+	        enter: function() {
+	            myInitFuncDesktop();
+	        },
+	        exit: function() {
+	            myUnInitFuncDesktop();
+	        }
+	    },{
+	        breakpoint: 'laptop',
+	        enter: function() {
+	            myInitFuncLaptop();
+	        },
+	        exit: function() {
+	            myUnInitFuncLaptop();
+	        }
+	    },{
+	        breakpoint: 'tablet',
+	        enter: function() {
+	            myInitFuncTablet();
+	        },
+	        exit: function() {
+	            myUnInitFuncTablet();
+	        }
+	    },{
+	        breakpoint: 'handheld',
+	        enter: function() {
+	            myInitFuncHandHeld();
+	        },
+	        exit: function() {
+	            myUnInitFuncHandHeld();
+	        }
+	    }
+	]);
 
 
 
-breakpoint: 'handheld',
-    enter: function() {
-    	
-    	  	$("#main").css('height', 'auto')
-			$("#main").css('marginTop', 0)
-		$('.scroll-pane').jScrollPane.destroy()
+	function myInitFuncDesktop(){
+		console.log('enter Desktop');
+		activateScroll();
+	}
+	function myUnInitFuncDesktop(){
+		console.log('leave Desktop');
+	}
+	function myInitFuncLaptop(){
+		console.log('enter Laptop');
+		activateScroll();
+	}
+	function myUnInitFuncLaptop(){
+		console.log('leave Laptop');
+	}
+	function myInitFuncTablet(){
+		console.log('enter Tablet');
+		activateScroll();
+	}
+	function myUnInitFuncTablet(){
+		console.log('leave Tablet');
 		
-    
-    },
-    exit: function() {
-			
-				var settings = {
-				//contentWidth :'600px'
-			};
-      		
-    		$('.scroll-pane').jScrollPane(settings);
-    		$("#main").css('height', body.height()-130)
-			$("#main").css('marginTop', 80)
+	}
+	function myInitFuncHandHeld(){
+		console.log('enter HandHeld');
+		if($isScrollBar){
+			$(".scrollBar").mCustomScrollbar("destroy");
+			$isScrollBar = false;
+		}
+	}
+	function myUnInitFuncHandHeld(){
+		console.log('leave HandHeld');
+	}
 
-       
-    }
+	// cf http://manos.malihu.gr/jquery-custom-content-scroller/
+	function activateScroll(){
+		if(!$isScrollBar){
+			$(".scrollBar").mCustomScrollbar({
+				scrollInertia : 400,
+				scrollButtons:{
+					enable:false
+				},
+				advanced:{
+				    updateOnBrowserResize: true
+				},
+				theme: 'LDF',
+				callbacks:{
+					onTotalScrollBack:function(){
+						console.log("scrolled back to the beginning of content.");
+					}
+				}		
+			});
 
-  
-},
-
-{
-
-breakpoint: 'tablet',
-    enter: function() {
-    	
-    		$("#main").css('height', body.height()-130)
-			$("#main").css('marginTop', 80)
-		
-    
-    },
-    exit: function() {
-
-       
-    }
-
-  
-
-
+			$isScrollBar = true;
+		}
+	}
 
 
-}
-,
-{
-    breakpoint: 'desktop',
-    enter: function() {
-    		$("#main").css('height', body.height()-130)
-			$("#main").css('marginTop', 80)
-    
-    
-    },
-    exit: function() {
-  
-       
-    }
-}
-    
 
-);
+
+
 	
 } )( jQuery );
 

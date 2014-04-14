@@ -35,13 +35,14 @@ html {
 html { height: 100%; }
 
 .right-box{
-border: solid black 5px;
+border: 5px solid  #EF312F;
 position: absolute;
 top:28px;
 right: 28px;
-width: 210px;
+width: 225px;
 background: white;
 }
+
 
 .right-box .container{
 padding:10px;
@@ -80,11 +81,16 @@ overflow-y:auto;
 }
 
 
-.left-box .head-box h1 {
-    height: 103px;
+
+.head-box h1 {
+    background: url("./images/logo.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 112px;
     margin: 0;
-    padding: 10px;
+    padding: 10px 10px 0;
+    text-indent: -9999px;
 }
+
 .left-box .nav-box{
 
 }
@@ -200,14 +206,7 @@ li.current-menu-item a, a:hover{color:#000;  transition:color .2s linear 0.1s;}
     margin-bottom: 20px;
 }
 
-.right-box {
-    border-width: 5px;
-    float: right;
-    margin-right: 28px;
-    margin-top: 28px;
-    padding: 10px 8px;
-    width:204px;
-}
+
 .thema-toggle {
     background: url("./images/bottom-arrow.png") no-repeat scroll right center rgba(0, 0, 0, 0);
     display: block;
@@ -252,23 +251,14 @@ a.lang.active_lang {
 }
 .nav-box h3 {
     border-style: solid;
+        border-color:#EF312F;
+
     border-width: 5px 0 0;
     margin-bottom: 9px;
     padding-bottom: 0;
     padding-top: 11px;
 }
-.head-box h1 {
-    /*jpg exist too*/
-    background: url("./images/logo.png") no-repeat scroll 0 0 transparent;
-    height: 110px;
-    margin: 14px 0 0 18px;
-    padding-left: 0;
-    padding-top: 0;
-    text-indent: -9999px;
-    width: 110px;
 
-    
-}
 
 
 /*thema nav*/
@@ -1041,7 +1031,7 @@ background-position:-100px -56px;
         }
 
         .left-box{
-            border-top:0;
+            border-top:0; 
             position: relative;
             top:auto;
             left:auto;

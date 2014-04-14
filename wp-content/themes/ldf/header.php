@@ -33,15 +33,20 @@
 	<!-- ><div id="tz"></div> !-->
 	<div id="page" class="hfeed site">
 	<div class="right-box clr fs13 clr-bc cgb">
-		<?php get_search_form(); ?>
-		<a class="up french lang active_lang" href="<?php echo esc_url( home_url( '/?lang=fr' ) ); ?>">fr</a><a class="up english lang" href="<?php echo esc_url( home_url( '/?lang=en' ) ); ?>">en</a><a class="up german lang" href="<?php echo esc_url( home_url( '/?lang=de' ) ); ?>">de</a> <span class="lang_select"></span><a href="https://twitter.com/LDF_1914_2018" class="fa fa-twitter twitter"></a> <a href="https://www.facebook.com/lignesdefront.1914.2018" class="fa fa-facebook facebook"></a>
-		<?php //do_action('icl_language_selector'); ?>
+		<div class="container">
+			<?php get_search_form(); ?>
+			<a class="up french lang active_lang" href="<?php echo esc_url( home_url( '/?lang=fr' ) ); ?>">fr</a><a class="up english lang" href="<?php echo esc_url( home_url( '/?lang=en' ) ); ?>">en</a><a class="up german lang" href="<?php echo esc_url( home_url( '/?lang=de' ) ); ?>">de</a> <span class="lang_select"></span><a href="https://twitter.com/LDF_1914_2018" class="fa fa-twitter twitter"></a> <a href="https://www.facebook.com/lignesdefront.1914.2018" class="fa fa-facebook facebook"></a>
+			<?php //do_action('icl_language_selector'); ?>
+		</div>
 	</div>
 	<div class="left-box cgb up">
 		<div class="head-box ">
-		<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-			<h1 class="site-title"><?php bloginfo( 'name' ); ?></h1>
-		</a>
+		
+			<h1 class="site-title">
+				<a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?>
+				</a>
+			</h1>
+		
 			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
 			<h2 class="site-sub-description"><?php _e( 'Programme de recherche', 'twentythirteen' );  ?></h2>
 		</div>
