@@ -109,13 +109,11 @@ function ldf_scripts_styles() {
 	$rand = rand(5, 150000);
 	wp_enqueue_script( 'jrespond', get_stylesheet_directory_uri() . '/js/jRespond/js/jRespond.js', array( 'jquery' ), $rand, true );
 
-	wp_enqueue_script( 'scrollpane_js', get_stylesheet_directory_uri() . '/js/jquery.jscrollpane.min.js', array( 'jquery' ), '2013-07-18', true );
+	wp_enqueue_script( 'mCustomScrollbar', get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '2013-07-18', true );
 	wp_enqueue_script( 'scrollpane_mousejs', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', array( 'jquery' ), '2013-07-18', true );
-
-	wp_enqueue_style( 'scrollpane_css', get_stylesheet_directory_uri() . '/css/jquery.jscrollpane.css' , array(), null );
-
+	wp_enqueue_style( 'mCustomScrollbar', get_stylesheet_directory_uri() . '/css/jquery.mCustomScrollbar.css' , array(), null );
 	wp_enqueue_style( 'typos_css', get_stylesheet_directory_uri() . '/css/LignesDeFront.css?='.$rand , array(), null );
-	wp_enqueue_script( 'twentythirteen-script', get_stylesheet_directory_uri() . '/js/functions.js', array( 'jquery', 'jrespond','scrollpane_js' ), $rand, true );
+	wp_enqueue_script( 'commons-script', get_stylesheet_directory_uri() . '/js/functions.js', array( 'jquery', 'jrespond','mCustomScrollbar' ), $rand, true );
 
 	//	wp_enqueue_style( 'tilezoom_css', get_stylesheet_directory_uri() . '/js/tilezoom/jquery.tilezoom.css' , array(), null );
 	//	wp_enqueue_script( 'tilezoom_js', get_stylesheet_directory_uri() . '/js/tilezoom/jquery.tilezoom.js', array( 'jquery' ), '2013-07-18', true );
@@ -289,7 +287,7 @@ add_action('wp_head', 'custom_styles');
 function custom_styles() {
 	$out = ''; 
 	$out .='<style>';
-	$out .='.clr,a,.searchform span,.searchform input#s,.wpcf7-form p,.wpcf7-submit,#commentform #submit{color:#ef312f;} input[type="text"] , input[type="email"]{border-color:#ef312f;} .searchform input#s{border-bottom:2px solid #ef312f;} textarea{border-color:#ef312f;}.clr-bc{border-color:#ef312f;color: #EF312F;}';
+	$out .='.clr,a,.searchform span,.searchform input#s,.wpcf7-form p,.wpcf7-submit,#commentform #submit{color:#ef312f;} .searchform input#s{border-bottom:2px solid #ef312f;} textarea{border-color:#ef312f;}.clr-bc{border-color:#ef312f;color: #EF312F;}';
 	$out .='</style>';
 	echo $out;
 }
