@@ -25,6 +25,7 @@ body{
 
 
 
+
 html {
     font-family:AkkuratRegular;   
 
@@ -56,6 +57,11 @@ padding:10px;
     top: 28px;
     width: 210px;
 }
+body.logged-in .left-box , body.logged-in .right-box {
+ top:56px;
+}
+
+
 
 .main{
 border: 5px solid #EF312F;
@@ -76,6 +82,10 @@ overflow: hidden;
 overflow-y:auto;
 }
 
+body.logged-in .main{
+     top: 189px;
+}
+
 .left-box .head-box {
     border-bottom: 5px solid #EF312F;
 }
@@ -89,6 +99,10 @@ overflow-y:auto;
     margin: 0;
     padding: 10px 10px 0;
     text-indent: -9999px;
+}
+
+.head-box h1 a{
+    display: block;
 }
 
 .left-box .nav-box{
@@ -146,7 +160,7 @@ a,
 input[type="text"] , input[type="email"]{
      border-color:#282828;
      border-style: solid;
-     border-width: 1px 1px  2px 1px;
+     border-width: 1px 1px  1px 1px;
        width: 61px;
 }
 .searchform input#s{
@@ -158,7 +172,7 @@ input[type="text"] , input[type="email"]{
 textarea{
     border-color:#ef312f;
     border-style: solid;
-    border-width:1px 1px 2px 1px;
+    border-width:1px 1px 1px 1px;
 }
 .clr-bc{
     border-color:#ef312f;
@@ -237,7 +251,11 @@ ul.flat li a{
    
 }
 
-#primary{float:left; width:100%;}
+#primary {
+    float: left;
+    max-width: 90%;
+    width: 90%;
+}
 
 a.lang{display:none;}
 a.lang.active_lang {
@@ -385,7 +403,7 @@ body.page-template-links-php article {
 
 .entry-content h2, .entry-content h3{ 
     font-size: 16px
-    font-family: AkkuratBold;
+ 
     margin-bottom:24px;
     text-transform:uppercase;
 
@@ -399,6 +417,12 @@ body.page-template-links-php article {
   margin: 8px 0;
     padding: 0;
     }
+
+
+.entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6{
+      font-family: CenturyGothicStd; 
+}
+
 .entry-content ul li {
 list-style:none;
 }
@@ -1013,6 +1037,45 @@ background-position:-100px -56px;
 }
 
 
+
+.mc4wp-form{
+     display: block;
+    float: left;
+    width: 100%;
+      font-size: 0.9em;
+}
+.mc4wp-form label{
+      color:#EF312F;
+        float:left;
+         width: 16%;
+
+}
+.mc4wp-form p{
+    margin-bottom:20px;
+
+}
+.mc4wp-form input[type="text"], .mc4wp-form input[type="email"] {
+    border: 1px solid #282828;
+    float: right;
+  
+    max-width: 510px;
+    width: 76%;
+}
+
+.mc4wp-form input[type="submit"]{ 
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    clear: both;
+    float: right;
+    font-size: 1em;
+    margin-top: 17px;
+    padding: 0;
+    text-transform: uppercase;
+    width: auto;
+    color:#EF312F;
+
+}
+
     /* MEDIAQUERIES FROM BOOSTRAP */
 
     /* Extra Small */
@@ -1021,8 +1084,8 @@ background-position:-100px -56px;
             margin: 10px;
         }
 
-        .right-box{
-            border: solid black 5px;
+        .right-box, body.logged-in .right-box{
+            border: 5px solid #EF312F;
             position: static;
             top:auto;
             right: auto;
@@ -1030,7 +1093,7 @@ background-position:-100px -56px;
             background: white;
         }
 
-        .left-box{
+        .left-box, body.logged-in .left-box{
             border-top:0; 
             position: relative;
             top:auto;
@@ -1040,7 +1103,7 @@ background-position:-100px -56px;
             background: white;
         }
 
-        .main{
+        .main, body.logged-in .main{
             border-top:0;
             padding: 10px 10px 10px 10px;
             position: relative;

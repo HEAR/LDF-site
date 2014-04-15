@@ -30,28 +30,21 @@
 					$(".nav-toggle").toggleClass('active');
 			});
 		
-		
-		body.addClass('loaded');
+			body.addClass('loaded');
+		/*
 
-		
+				$('#tz').tilezoom({	
+						xml: 'http://lignesdefront.hear.fr/dest/ldf.xml',
+						mousewheel: true,
+						navigation: null,
+						zoomIn: '#plus',
+						zoomOut: '#minus',
+						goHome: '#home'
+					});
+				//?? je sais pas, doc pas claire.. $('#tz').tilezoom('zoom',2 )
+		*/
 
-		
-		
-	
-	
-/*
-
-		$('#tz').tilezoom({	
-				xml: 'http://lignesdefront.hear.fr/dest/ldf.xml',
-				mousewheel: true,
-				navigation: null,
-				zoomIn: '#plus',
-				zoomOut: '#minus',
-				goHome: '#home'
-			});
-		//?? je sais pas, doc pas claire.. $('#tz').tilezoom('zoom',2 )
-*/
-
+		// lang selectors
 		$(".lang_select").on( 'click', function() {
 			$(".lang").addClass('active_lang');
 			$(".lang_select").addClass('toggled')
@@ -62,7 +55,14 @@
 			$(".lang_select").removeClass('toggled')
 
 		});
-
+		function loadPageVar (sVar) {
+  			return decodeURI(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+		}
+		var lang_get = loadPageVar("lang");
+		if(lang_get){
+			$(".lang").removeClass('active_lang');
+			$("."+lang_get).addClass('active_lang');
+		}
 
 
 
@@ -106,34 +106,14 @@
 		}
 		//tourne('.head-box h1')
 
-
-
-
-		
 	} );
 
 
 
-	/**
-	 * Makes "skip to content" link work correctly in IE9 and Chrome for better
-	 * accessibility.
-	 *
-	 * @link http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/
-	 */
-	_window.on( 'hashchange.twentythirteen', function() {
-		var element = document.getElementById( location.hash.substring( 1 ) );
-
-		if ( element ) {
-			if ( ! /^(?:a|select|input|button|textarea)$/i.test( element.tagName ) )
-				element.tabIndex = -1;
-
-			element.focus();
-		}
-	} );
+	
 
 
-
-
+	// responsive
 
 	$isScrollBar = false;
 
@@ -252,6 +232,22 @@
 	}
 
 
+	/**
+	 * Makes "skip to content" link work correctly in IE9 and Chrome for better
+	 * accessibility.
+	 *
+	 * @link http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/
+	 */
+	_window.on( 'hashchange.twentythirteen', function() {
+		var element = document.getElementById( location.hash.substring( 1 ) );
+
+		if ( element ) {
+			if ( ! /^(?:a|select|input|button|textarea)$/i.test( element.tagName ) )
+				element.tabIndex = -1;
+
+			element.focus();
+		}
+	} );
 
 
 
