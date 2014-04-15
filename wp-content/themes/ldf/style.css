@@ -324,7 +324,10 @@ a.lang.active_lang {
 .lang_select {
     background: url("./images/arrow-right.png") no-repeat scroll right 6px rgba(0, 0, 0, 0);
     font-weight: bold;
-    padding: 4px 9px 0 0;
+     cursor: pointer;
+    font-weight: bold;
+    padding: 2px 10px 0 0;
+    width: 17px;
 }
 
 .lang_select.toggled{
@@ -703,7 +706,7 @@ body.post-type-archive-agenda h1.entry-title a {color:#EF312F;}
 .wpcf7-form textarea {
     float: right;
     max-width: 510px;
-    width: 76%;
+    width: 65%;
     border: 1px solid #282828;
     font-size: 0.9em;
 }
@@ -1047,19 +1050,21 @@ background-position:-100px -56px;
 .mc4wp-form label{
       color:#EF312F;
         float:left;
-         width: 16%;
+         width: 30%;
 
 }
-.mc4wp-form p{
-    margin-bottom:20px;
-
+.mc4wp-form p {
+    display: block;
+    float: left;
+    margin-bottom: 2px;
+    width: 100%;
 }
 .mc4wp-form input[type="text"], .mc4wp-form input[type="email"] {
     border: 1px solid #282828;
     float: right;
   
     max-width: 510px;
-    width: 76%;
+    width: 65%;
 }
 
 .mc4wp-form input[type="submit"]{ 

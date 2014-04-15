@@ -47,8 +47,9 @@
 		// lang selectors
 		$(".lang_select").on( 'click', function() {
 			$(".lang").addClass('active_lang');
-			$(".lang_select").addClass('toggled')
+			$(".lang_select").toggleClass('toggled')
 		});
+
 		$(".lang").on( 'click', function() {
 			$(".lang").removeClass('active_lang');
 			$(this).addClass('active_lang');
@@ -62,6 +63,9 @@
 		if(lang_get){
 			$(".lang").removeClass('active_lang');
 			$("."+lang_get).addClass('active_lang');
+		}
+		else{
+			$(".fr").addClass('active_lang');
 		}
 
 
