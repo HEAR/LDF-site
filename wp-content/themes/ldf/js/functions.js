@@ -46,26 +46,37 @@
 
 		// lang selectors
 		$(".lang_select").on( 'click', function() {
-			$(".lang").addClass('active_lang');
+			$(".lang").toggleClass('visible_lang');
 			$(".lang_select").toggleClass('toggled')
 		});
 
+
 		$(".lang").on( 'click', function() {
+			$(".lang").toggleClass('visible_lang');
 			$(".lang").removeClass('active_lang');
 			$(this).addClass('active_lang');
+			$(this).addClass('visible_lang');
 			$(".lang_select").removeClass('toggled')
 
 		});
+
+
 		function loadPageVar (sVar) {
   			return decodeURI(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
 		}
 		var lang_get = loadPageVar("lang");
 		if(lang_get){
-			$(".lang").removeClass('active_lang');
-			$("."+lang_get).addClass('active_lang');
+			
+
+					$("."+lang_get).addClass('active_lang');
+
+			$("."+lang_get).addClass('visible_lang');
+
 		}
 		else{
 			$(".fr").addClass('active_lang');
+			$(".fr").addClass('visible_lang');
+
 		}
 
 

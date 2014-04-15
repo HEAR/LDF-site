@@ -83,7 +83,7 @@ overflow-y:auto;
 }
 
 body.logged-in .main{
-     top: 189px;
+     top: 190px;
 }
 
 .left-box .head-box {
@@ -101,8 +101,11 @@ body.logged-in .main{
     text-indent: -9999px;
 }
 
-.head-box h1 a{
+.head-box h1 a {
     display: block;
+    float: left;
+    height: 100%;
+    width: 100%;
 }
 
 .left-box .nav-box{
@@ -258,7 +261,7 @@ ul.flat li a{
 }
 
 a.lang{display:none;}
-a.lang.active_lang {
+a.lang.visible_lang {
     display: block;
     float: left;
     line-height: 1.3em;
