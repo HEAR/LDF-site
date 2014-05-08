@@ -57,9 +57,9 @@ padding:10px;
     top: 28px;
     width: 210px;
 }
-body.logged-in .left-box , body.logged-in .right-box {
+/*body.logged-in .left-box , body.logged-in .right-box {
  top:56px;
-}
+}*/
 
 
 
@@ -82,9 +82,9 @@ overflow: hidden;
 overflow-y:auto;
 }
 
-body.logged-in .main{
+/*body.logged-in .main{
      top: 190px;
-}
+}*/
 
 .left-box .head-box {
     border-bottom: 5px solid #EF312F;
