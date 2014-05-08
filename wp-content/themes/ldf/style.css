@@ -160,6 +160,11 @@ a,
     color:#ef312f;
 }
 
+input, textarea, button{
+    -webkit-appearance: none;
+    border-radius: 0;
+}
+
 input[type="text"] , input[type="email"]{
      border-color:#282828;
      border-style: solid;
