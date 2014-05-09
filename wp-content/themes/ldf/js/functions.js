@@ -241,6 +241,10 @@
 					}
 				}		
 			});
+			
+			$('#content img').load(function(){
+				$(".scrollBar").mCustomScrollbar("update");
+			});
 
 			$isScrollBar = true;
 		}
