@@ -225,6 +225,7 @@
 
 	// cf http://manos.malihu.gr/jquery-custom-content-scroller/
 	function activateScroll(){
+
 		if(!$isScrollBar){
 			$(".scrollBar").mCustomScrollbar({
 				scrollInertia : 400,
@@ -240,6 +241,10 @@
 						console.log("scrolled back to the beginning of content.");
 					}
 				}		
+			});
+
+			$('#content img').load(function(){
+				$(".scrollBar").mCustomScrollbar("update");
 			});
 
 			$isScrollBar = true;
@@ -263,6 +268,141 @@
 			element.focus();
 		}
 	} );
+
+
+
+
+
+
+
+
+// QUAND ON CLIQUE SUR UN LIEN D'UNE GALLERIE
+		$('.gallery a').each(function(){
+			$(this).click(function(event){
+
+				// on prépare le viewer
+				$('body').append('<div class="overlay"></div>'+
+					'<div class="viewer">'+
+					'<div class="close">X</div>'+
+					'<ul class="bxslider"></ul>'+
+					'<div class="navigation">'+
+					'<div class="arrow"><span id="slider-prev" class="bouton"></span> <span id="slider-next" class="bouton"></span></div>'+
+					'<p class="legend"></p>'+
+					'</div>');
+
+				var listeImages = '';
+
+				var gallerieID =  '#'+$(this).parent().parent().parent().attr('id') ;
+
+				$(gallerieID+' a').each(function(){
+					var li = $('<li>').append(
+						$('<img>')
+						.attr( "src" , $(this).attr("href") ) 
+						.attr( "title" , $(this).attr("title") ) 
+					);
+					$('.bxslider').append(li);
+				});
+
+				var selectedID = $(this).parent().parent().index(gallerieID+' .gallery-item');
+
+				slider(selectedID);
+
+				event.preventDefault();
+
+			});
+
+		});
+
+		function slider( selectedID ){
+			$slider = $('.bxslider').bxSlider({
+				speed: 150,
+				mode: 'horizontal',
+				pager: false,
+				startSlide: selectedID,
+				adaptiveHeight: true,
+				infiniteLoop:false,
+				nextSelector: '#slider-next',
+				prevSelector: '#slider-prev',
+				nextText: '>',
+				prevText: '<',
+				onSliderLoad: function(index){
+					// on affiche la légende
+					// et on adapte la dimension verticale si nécessaire
+					legendAndSize(index);
+				},
+				onSlideBefore: function($slideElement, oldIndex, index){
+					// on affiche la légende
+					// et on adapte la dimension verticale si nécessaire
+					legendAndSize(index);
+				},
+			});
+
+			// on active les touches clavier
+			$(document).keydown(function(event){
+				if(event.which == 39){
+					//console.log('flêche droite');
+					$slider.goToNextSlide();
+				}
+				if(event.which == 37){
+					//console.log('flêche gauche');
+					$slider.goToPrevSlide();
+				}
+			});
+
+			// fermeture sur le bouton
+			$('.close').click(function(event){
+				$('.viewer').slideUp('slow', function(){
+					$slider.destroySlider();
+					$('.viewer').remove();
+					$('.overlay').remove();
+				});	
+			});
+
+			// fermeture sur click de l'overlay
+			$('.overlay').click(function(event){
+				$('.close').trigger('click');
+			})
+
+			/**
+			 * on affiche la légende et on adapte la dimension verticale si nécessaire
+			 * @param  {[type]} index [description]
+			 */
+			function legendAndSize(index){
+
+				// on affiche la légende
+				var legende = $('.bxslider li').eq(index).find('img').attr('title');
+				if( legende == "" ) legende = "Pas de légende.";
+
+				$('.legend')
+				.text(legende)
+				.css('opacity',0)
+				.animate({
+					opacity: 1,
+				}, 1000);
+
+				// on ajuste la taille verticale
+				var navH = $(".navigation").outerHeight(true);
+				var imgH = $('.bxslider li').eq(index).find('img').height();
+				var sliderH = $(window).height() - 
+								parseInt( $('.viewer').css('top') )*2 -
+								parseInt( $('.viewer').css('border-width') )*2 -
+								parseInt( $('.bx-wrapper').css('padding-top') )*2 -
+								navH;
+
+				if(imgH > sliderH){
+					$('.bxslider li').eq(index).find('img').height( sliderH );
+					$('.bxslider li').eq(index).find('img').width('auto');
+				}
+			}
+		}		
+
+
+
+
+
+
+
+
 
 
 

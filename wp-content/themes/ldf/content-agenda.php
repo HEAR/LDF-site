@@ -55,7 +55,7 @@ if (has_post_thumbnail() && ! post_password_required()) : ?>
 				<?php $terms = get_the_terms( $post->ID , 'event-type' ); 
 				if($terms){
 					foreach( $terms as $term ) {  
-						echo ' <span class="black_c">/</span> '. $term->slug;  unset($term); 
+						echo ' <span class="black_c">/</span> '. $term->name;  unset($term); 
 					}
 				}
 				?>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+	<title>test bxSlider 4 LDF</title>
+	<link rel="stylesheet" href="jquery.bxslider.css">
+	<style>
+
+
+		/**
+		 * SLIDER CSS
+		 */
+		.overlay{
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: white;
+			opacity: 0.5;
+		}
+
+		.viewer{
+			position: fixed;
+			top:20px;
+			right: 20px;
+			max-width: 80%;
+			border:solid 8px red;
+			background: white;
+		}
+
+		.viewer .close{
+			position: absolute;
+			width: 30px;
+			height: 30px;
+			background: red;
+			color:white;
+			top: 0;
+			right: 0;
+			z-index: 9999;
+			font-family: sans-serif;
+			text-align: center;
+			line-height: 26px;
+		}
+
+		.viewer .bouton a{
+			background: white;
+			color:red;
+			font-family: sans-serif;
+			line-height: 26px;
+			font-size: 26px;
+			text-decoration: none;
+		}
+
+		.viewer  .navigation{
+			padding: 10px;
+			position: relative;
+			border-top:solid 8px red;
+		}
+
+		.viewer .arrow{
+			text-align: right;
+		}
+
+		.viewer .legend{
+			margin: 0;
+		}
+
+		.viewer ul.bxslider{
+			margin: 0;
+		}
+
+		.bx-wrapper .bx-viewport{
+			box-shadow:none;
+			border:0;
+			padding: 0;
+			margin:0 ;
+			left: 0;
+		}
+
+		.bx-wrapper{
+			padding: 10px;
+		}
+
+		::selection{
+			background: red;
+			color:white;
+		}
+
+		.gallery-item{
+			float: left;
+		}
+
+		/* Extra Small */
+		@media(max-width:700px){
+			body{
+				margin: 10px;
+			}
+
+			.overlay{
+				opacity: 1;
+			}
+
+			.viewer{
+				top:10px;
+				right: 10px;
+				max-width: -webkit-calc(100% - 36px);
+			}
+
+			.viewer .arrow{
+				display: none;
+			}
+
+		}
+
+		/* Small */
+		@media(min-width:700px) and (max-width:991px){
+			body{
+			}
+		}
+
+		/* Medium */
+		@media(min-width:992px) and (max-width:1199px){
+			body{
+			}
+		}
+
+		/* Large */
+		@media(min-width:1200px){
+			body{
+			}
+		}
+
+	</style>
+</head>
+<body>
+
+	<div id="page">
+		<div id="gallery-1" class="gallery galleryid-1 gallery-columns-3 gallery-size-thumbnail">
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/Baïonnette-Les-camoufleurs-23-aout-1917.-coll-FK.jpg" data-lightboxplus="lightbox[1]" title="" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/Baïonnette-Les-camoufleurs-23-aout-1917.-coll-FK-150x150.jpg" class="attachment-thumbnail" alt="une image"></a>
+				</dt>
+				<dd class="wp-caption-text gallery-caption">
+				une image
+				</dd>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/arnold-lillerkriegszeitung.jpg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/arnold-lillerkriegszeitung-150x150.jpg" class="attachment-thumbnail" alt="de la gallerie"></a>
+				</dt>
+				<dd class="wp-caption-text gallery-caption">
+				de la gallerie
+				</dd>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/apollinaire-visée.jpeg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/apollinaire-visée-150x150.jpeg" class="attachment-thumbnail" alt="apollinaire visée"></a>
+				</dt>
+			</dl>
+			<br style="clear: both">
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/apollinaire-fumées.jpeg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/apollinaire-fumées-150x150.jpeg" class="attachment-thumbnail" alt="apollinaire fumées"></a>
+				</dt>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon landscape">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/monument-152-RI_loic-beck_1.jpg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/monument-152-RI_loic-beck_1-150x150.jpg" class="attachment-thumbnail" alt="Monument au 152e Régiment d’Infanterie"></a>
+				</dt>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/Cambrai-1a_300dpi.png" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/Cambrai-1a_300dpi-150x150.png" class="attachment-thumbnail" alt="Cambrai-1a_300dpi"></a>
+				</dt>
+			</dl>
+			<br style="clear: both">
+			<dl class="gallery-item">
+				<dt class="gallery-icon landscape">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/mouchoir-2_72dpi.jpg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/mouchoir-2_72dpi-150x150.jpg" class="attachment-thumbnail" alt="mouchoir-2_72dpi"></a>
+				</dt>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon landscape">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2013/11/Anonyme-Eine-Nacht-and-der-Front-juin-1916-e1383583930975.jpeg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2013/11/Anonyme-Eine-Nacht-and-der-Front-juin-1916-e1383583930975-150x150.jpeg" class="attachment-thumbnail" alt="Anonyme, Eine Nacht and der Front, juin 1916"></a>
+				</dt>
+			</dl>
+			<br style="clear: both">
+		</div>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, ratione, velit tempore temporibus esse omnis voluptas sequi ipsum. Minima, non quas animi veniam quo iure voluptas quibusdam ipsam dolorum quaerat.</p>
+
+		<div id="gallery-2" class="gallery galleryid-2 gallery-columns-3 gallery-size-thumbnail">
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/Baïonnette-Les-camoufleurs-23-aout-1917.-coll-FK.jpg" data-lightboxplus="lightbox[1]" title="" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/Baïonnette-Les-camoufleurs-23-aout-1917.-coll-FK-150x150.jpg" class="attachment-thumbnail" alt="une image"></a>
+				</dt>
+				<dd class="wp-caption-text gallery-caption">
+				une image
+				</dd>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/arnold-lillerkriegszeitung.jpg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/arnold-lillerkriegszeitung-150x150.jpg" class="attachment-thumbnail" alt="de la gallerie"></a>
+				</dt>
+				<dd class="wp-caption-text gallery-caption">
+				de la gallerie
+				</dd>
+			</dl>
+			<dl class="gallery-item">
+				<dt class="gallery-icon portrait">
+					<a href="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/apollinaire-visée.jpeg" data-lightboxplus="lightbox[1]" title="Bonjour tout le monde - typographie lorem ipsum" class="cboxElement"><img width="150" height="150" src="http://lignesdefront.hear.fr/wp-content/uploads/2014/02/apollinaire-visée-150x150.jpeg" class="attachment-thumbnail" alt="apollinaire visée"></a>
+				</dt>
+			</dl>
+		</div>
+
+	</div>
+
+
+
+	<script src="jquery-1.11.0.min.js"></script>
+	<script src="jquery.bxslider.min.js"></script>
+	<script>
+	$(document).ready(function(){
+
+		// QUAND ON CLIQUE SUR UN LIEN D'UNE GALLERIE
+		$('.gallery a').each(function(){
+			$(this).click(function(event){
+
+				// on prépare le viewer
+				$('body').append('<div class="overlay"></div>'+
+					'<div class="viewer">'+
+					'<div class="close">X</div>'+
+					'<ul class="bxslider"></ul>'+
+					'<div class="navigation">'+
+					'<div class="arrow"><span id="slider-prev" class="bouton"></span> <span id="slider-next" class="bouton"></span></div>'+
+					'<p class="legend"></p>'+
+					'</div>');
+
+				var listeImages = '';
+
+				var gallerieID =  '#'+$(this).parent().parent().parent().attr('id') ;
+
+				$(gallerieID+' a').each(function(){
+					var li = $('<li>').append(
+						$('<img>')
+						.attr( "src" , $(this).attr("href") ) 
+						.attr( "title" , $(this).attr("title") ) 
+					);
+					$('.bxslider').append(li);
+				});
+
+				var selectedID = $(this).parent().parent().index(gallerieID+' .gallery-item');
+
+				slider(selectedID);
+
+				event.preventDefault();
+
+			});
+
+		});
+
+		function slider( selectedID ){
+			$slider = $('.bxslider').bxSlider({
+				speed: 150,
+				mode: 'horizontal',
+				pager: false,
+				startSlide: selectedID,
+				adaptiveHeight: true,
+				infiniteLoop:false,
+				nextSelector: '#slider-next',
+				prevSelector: '#slider-prev',
+				nextText: '>',
+				prevText: '<',
+				onSliderLoad: function(index){
+					// on affiche la légende
+					// et on adapte la dimension verticale si nécessaire
+					legendAndSize(index);
+				},
+				onSlideBefore: function($slideElement, oldIndex, index){
+					// on affiche la légende
+					// et on adapte la dimension verticale si nécessaire
+					legendAndSize(index);
+				},
+			});
+
+			// on active les touches clavier
+			$(document).keydown(function(event){
+				if(event.which == 39){
+					//console.log('flêche droite');
+					$slider.goToNextSlide();
+				}
+				if(event.which == 37){
+					//console.log('flêche gauche');
+					$slider.goToPrevSlide();
+				}
+			});
+
+			// fermeture sur le bouton
+			$('.close').click(function(event){
+				$('.viewer').slideUp('slow', function(){
+					$slider.destroySlider();
+					$('.viewer').remove();
+					$('.overlay').remove();
+				});	
+			});
+
+			// fermeture sur click de l'overlay
+			$('.overlay').click(function(event){
+				$('.close').trigger('click');
+			})
+
+			/**
+			 * on affiche la légende et on adapte la dimension verticale si nécessaire
+			 * @param  {[type]} index [description]
+			 */
+			function legendAndSize(index){
+
+				// on affiche la légende
+				var legende = $('.bxslider li').eq(index).find('img').attr('title');
+				if( legende == "" ) legende = "Pas de légende.";
+
+				$('.legend')
+				.text(legende)
+				.css('opacity',0)
+				.animate({
+					opacity: 1,
+				}, 1000);
+
+				// on ajuste la taille verticale
+				var navH = $(".navigation").outerHeight(true);
+				var imgH = $('.bxslider li').eq(index).find('img').height();
+				var sliderH = $(window).height() - 
+								parseInt( $('.viewer').css('top') )*2 -
+								parseInt( $('.viewer').css('border-width') )*2 -
+								parseInt( $('.bx-wrapper').css('padding-top') )*2 -
+								navH;
+
+				if(imgH > sliderH){
+					$('.bxslider li').eq(index).find('img').height( sliderH );
+					$('.bxslider li').eq(index).find('img').width('auto');
+				}
+			}
+		}		
+		
+	});
+	
+	</script>
+</body>
+</html>

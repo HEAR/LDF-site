@@ -30,7 +30,7 @@ get_header(); ?>
 
      echo "<ul>";
      foreach ( $categories as $term ) {
-       echo "<li><a href='".esc_url( home_url( '' ) )."/annee_agenda/". $term->slug ."'>" . $term->name . "</a></li>";
+      // echo "<li><a href='".esc_url( home_url( '' ) )."/annee_agenda/". $term->slug ."'>" . $term->name . "</a></li>";
         
      }
      echo "</ul>";

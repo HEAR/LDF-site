@@ -28,7 +28,7 @@ get_header(); ?>
 
      echo "<ul>";
      foreach ( $categories as $term ) {
-       echo "<li>" . $term->name . "</li>";
+       //echo "<li>" . $term->name . "</li>";
         
      }
      echo "</ul>";
@@ -40,7 +40,7 @@ get_header(); ?>
 
  		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
         ?>
-        <h1><?php echo $term->name;?></h1>
+        <h1>Agenda /<?php echo $term->name;?></h1>
         <div class="intro2">
             <p>
             <?php echo $term->description;?>
