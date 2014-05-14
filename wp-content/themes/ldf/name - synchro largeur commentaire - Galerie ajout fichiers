@@ -1,0 +1,16 @@
+[master a5e4d26] Padding/marges contenu  - Style des listes dans le contenu - Taxonomy agenda -
+ 20 files changed, 3006 insertions(+), 32 deletions(-)
+ create mode 100644 wp-content/themes/ldf/bxslider/bower.json
+ create mode 100644 wp-content/themes/ldf/bxslider/images/bx_loader.gif
+ create mode 100644 wp-content/themes/ldf/bxslider/images/controls.png
+ create mode 100644 wp-content/themes/ldf/bxslider/index.html
+ create mode 100644 wp-content/themes/ldf/bxslider/jquery-1.11.0.min.js
+ create mode 100644 wp-content/themes/ldf/bxslider/jquery.bxslider.css
+ create mode 100644 wp-content/themes/ldf/bxslider/jquery.bxslider.js
+ create mode 100644 wp-content/themes/ldf/bxslider/jquery.bxslider.min.js
+ create mode 100644 wp-content/themes/ldf/bxslider/plugins/jquery.easing.1.3.js
+ create mode 100644 wp-content/themes/ldf/bxslider/plugins/jquery.fitvids.js
+ create mode 100644 wp-content/themes/ldf/bxslider/readme.md
+ mode change 100755 => 100644 wp-content/themes/ldf/css/jquery.mCustomScrollbar.css
+ mode change 100755 => 100644 wp-content/themes/ldf/css/mCSB_buttons.png
+ mode change 100755 => 100644 wp-content/themes/ldf/js/jquery.mCustomScrollbar.concat.min.js

@@ -57,7 +57,10 @@ padding:10px;
     top: 28px;
     width: 210px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e11345d0272458bb39d2fff17935413af9b9879d
 /*body.logged-in .left-box , body.logged-in .right-box {
  top:56px;
 }*/
@@ -84,7 +87,11 @@ overflow-y:auto;
 }
 
 /*body.logged-in .main{
+<<<<<<< HEAD
      top: 189px;
+=======
+     top: 190px;
+>>>>>>> e11345d0272458bb39d2fff17935413af9b9879d
 }*/
 
 .left-box .head-box {
@@ -454,6 +461,10 @@ margin-left: -20px;
 .entry-content img{
 max-width: 100%;
 height: auto;
+}
+
+.entry-content img.v-middle{
+    vertical-align:middle;
 }
 
 .entry-thumbnail{
@@ -1141,7 +1152,10 @@ background-position:-100px -56px;
             padding-bottom:10px;
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e11345d0272458bb39d2fff17935413af9b9879d
     }
 
     /* Small */

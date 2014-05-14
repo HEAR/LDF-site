@@ -292,7 +292,15 @@ function custom_styles() {
 	echo $out;
 }
 
+<<<<<<< HEAD
 add_action('get_header', 'my_filter_head');
 function my_filter_head() {
 	remove_action('wp_head', '_admin_bar_bump_cb');
 }
+=======
+// pour supprimer la marge de 32px quand on est connecté
+add_action('get_header', 'my_filter_head');
+function my_filter_head() {
+	remove_action('wp_head', '_admin_bar_bump_cb');
+}
+>>>>>>> e11345d0272458bb39d2fff17935413af9b9879d
