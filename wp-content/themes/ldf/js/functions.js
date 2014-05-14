@@ -242,10 +242,6 @@
 					}
 				}		
 			});
-			
-			$('#content img').load(function(){
-				$(".scrollBar").mCustomScrollbar("update");
-			});
 
 			$('#content img').load(function(){
 				$(".scrollBar").mCustomScrollbar("update");
