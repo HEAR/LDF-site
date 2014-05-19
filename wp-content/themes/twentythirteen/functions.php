@@ -56,8 +56,6 @@ if ( version_compare( $GLOBALS['wp_version'], '3.6-alpha', '<' ) )
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_setup() {
 	/*
@@ -83,7 +81,9 @@ function twentythirteen_setup() {
 	 * Switches default core markup for search form, comment form,
 	 * and comments to output valid HTML5.
 	 */
-	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list' ) );
+	add_theme_support( 'html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+	) );
 
 	/*
 	 * This theme supports all available post formats by default.
@@ -156,33 +156,30 @@ function twentythirteen_fonts_url() {
  * Enqueue scripts and styles for the front end.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_scripts_styles() {
 	/*
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
 	 */
-		$rand = rand(5, 150000);
-
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
 
 	// Adds Masonry to handle vertical alignment of footer widgets.
-	
+	if ( is_active_sidebar( 'sidebar-1' ) )
+		wp_enqueue_script( 'jquery-masonry' );
 
 	// Loads JavaScript file with functionality specific to Twenty Thirteen.
-	wp_enqueue_script( 'twentythirteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '2013-07-18', true );
+	wp_enqueue_script( 'twentythirteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '2014-03-18', true );
 
 	// Add Source Sans Pro and Bitter fonts, used in the main stylesheet.
-	//wp_enqueue_style( 'twentythirteen-fonts', twentythirteen_fonts_url(), array(), null );
+	wp_enqueue_style( 'twentythirteen-fonts', twentythirteen_fonts_url(), array(), null );
 
 	// Add Genericons font, used in the main stylesheet.
 	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/fonts/genericons.css', array(), '2.09' );
 
 	// Loads our main stylesheet.
-	wp_enqueue_style( 'twentythirteen-style', get_stylesheet_uri(), array(), $rand);
+	wp_enqueue_style( 'twentythirteen-style', get_stylesheet_uri(), array(), '2013-07-18' );
 
 	// Loads the Internet Explorer specific stylesheet.
 	wp_enqueue_style( 'twentythirteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentythirteen-style' ), '2013-07-18' );
@@ -209,7 +206,7 @@ function twentythirteen_wp_title( $title, $sep ) {
 		return $title;
 
 	// Add the site name.
-	$title .= get_bloginfo( 'name' );
+	$title .= get_bloginfo( 'name', 'display' );
 
 	// Add the site description for the home/front page.
 	$site_description = get_bloginfo( 'description', 'display' );
@@ -228,8 +225,6 @@ add_filter( 'wp_title', 'twentythirteen_wp_title', 10, 2 );
  * Register two widget areas.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_widgets_init() {
 	register_sidebar( array(
@@ -259,8 +254,6 @@ if ( ! function_exists( 'twentythirteen_paging_nav' ) ) :
  * Display navigation to next/previous set of posts when applicable.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_paging_nav() {
 	global $wp_query;
@@ -292,8 +285,6 @@ if ( ! function_exists( 'twentythirteen_post_nav' ) ) :
  * Display navigation to next/previous post when applicable.
 *
 * @since Twenty Thirteen 1.0
-*
-* @return void
 */
 function twentythirteen_post_nav() {
 	global $post;
@@ -325,8 +316,6 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
  * Create your own twentythirteen_entry_meta() to override in a child theme.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_entry_meta() {
 	if ( is_sticky() && is_home() && ! is_paged() )
@@ -394,8 +383,6 @@ if ( ! function_exists( 'twentythirteen_the_attached_image' ) ) :
  * Print the attached image with a link to the next attached image.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_the_attached_image() {
 	/**
@@ -505,8 +492,6 @@ add_filter( 'body_class', 'twentythirteen_body_class' );
  * Adjust content_width value for video post formats and attachment templates.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_content_width() {
 	global $content_width;
@@ -524,7 +509,6 @@ add_action( 'template_redirect', 'twentythirteen_content_width' );
  * @since Twenty Thirteen 1.0
  *
  * @param WP_Customize_Manager $wp_customize Customizer object.
- * @return void
  */
 function twentythirteen_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
@@ -540,8 +524,6 @@ add_action( 'customize_register', 'twentythirteen_customize_register' );
  * reload changes asynchronously.
  *
  * @since Twenty Thirteen 1.0
- *
- * @return void
  */
 function twentythirteen_customize_preview_js() {
 	wp_enqueue_script( 'twentythirteen-customizer', get_template_directory_uri() . '/js/theme-customizer.js', array( 'customize-preview' ), '20130226', true );
