@@ -12,10 +12,25 @@ if( ! defined("MC4WP_LITE_VERSION") ) {
 * @uses WP_HTTP
 */ 
 class MC4WP_Lite_API {
-	
+
+	/**
+	 * @var string
+	 */
 	private $api_url = 'https://api.mailchimp.com/2.0/';
+
+	/**
+	 * @var string
+	 */
 	private $api_key = '';
+
+	/**
+	 * @var string
+	 */
 	private $error_message = '';
+
+	/**
+	 * @var boolean
+	 */
 	private $connected = null;
 
 	/**
@@ -53,7 +68,7 @@ class MC4WP_Lite_API {
 	*/
 	public function is_connected()
 	{
-		if( $this->connected == null ) {
+		if( $this->connected === null ) {
 
 			$this->connected = false;
 			$result = $this->call( 'helper/ping' );
@@ -61,7 +76,7 @@ class MC4WP_Lite_API {
 			if( $result !== false ) {
 				if( isset( $result->msg ) && $result->msg === "Everything's Chimpy!" ) {
 					$this->connected = true;
-				} else {
+				} elseif( isset( $result->error ) ) {
 					$this->show_error( "MailChimp Error: " . $result->error );
 				}
 			} 
@@ -233,18 +248,19 @@ class MC4WP_Lite_API {
 			'sslverify' => false
 			) 
 		); 
-	
+
+		// test for wp errors
 		if( is_wp_error( $response ) ) {
-			
 			// show error message to admins
 			$this->show_error( "HTTP Error: " . $response->get_error_message() );
-			
 			return false;
 		}
 
-		// dirty fix for older WP version
-		if($method == 'helper/ping' && isset( $response['headers']['content-length'] ) && (int) $response['headers']['content-length'] == 44 ) { 
-			return (object) array( 'msg' => "Everything's Chimpy!");
+		// dirty fix for older WP versions
+		if( $method === 'helper/ping' && isset( $response['headers']['content-length'] ) && (int) $response['headers']['content-length'] === 44 ) {
+			return (object) array(
+				'msg' => "Everything's Chimpy!"
+			);
 		}
 		
 		$body = wp_remote_retrieve_body( $response );

@@ -9,7 +9,7 @@ if( ! defined("MC4WP_LITE_VERSION") ) {
 /**
 * This class takes care of all form related functionality
 */ 
-class MC4WP_Lite_Form {
+class MC4WP_Lite_Form_Manager {
 	
 	/**
 	* @var int
@@ -44,7 +44,8 @@ class MC4WP_Lite_Form {
 		add_filter( 'widget_text', 'shortcode_unautop' );
 		add_filter( 'widget_text', 'do_shortcode', 11 );
 
-		add_filter( 'mc4wp_stylesheets', array( $this, 'add_stylesheets' ) );
+        // load checkbox css if necessary
+        add_action('wp_enqueue_scripts', array( $this, 'load_stylesheet' ) );
 
 		// has a MC4WP form been submitted?
 		if ( isset( $_POST['_mc4wp_form_submit'] ) ) {
@@ -73,28 +74,27 @@ class MC4WP_Lite_Form {
 	}
 
 	/**
-	* Adds the form stylesheet to the MailChimp for WP Stylesheets filter
-	*
-	* @param array $stylesheets
-	* @return array
+	* Load the form stylesheet(s)
 	*/
-	public function add_stylesheets( $stylesheets ) {
+	public function load_stylesheet( ) {
 		$opts = mc4wp_get_options('form');
 
-		
-		if( $opts['css'] ) {
+        if( $opts['css'] == false ) {
+            return false;
+        }
 
-			// Load the base form theme
-			$stylesheets['form'] = 1;
+        if( $opts['css'] != 1 && $opts['css'] !== 'default' ) {
 
+            $form_theme = $opts['css'];
+            if( in_array( $form_theme, array( 'blue', 'green', 'dark', 'light', 'red' ) ) ) {
+                wp_enqueue_style( 'mailchimp-for-wp-form-theme-' . $opts['css'], MC4WP_LITE_PLUGIN_URL . "assets/css/form-theme-{$opts['css']}.css", array(), MC4WP_LITE_VERSION, 'all' );
+            }
 
-			// Should we load one of the default form themes?
-			if( $opts['css'] != 1 && $opts['css'] != 'default' ) {
-				$stylesheets['form-theme'] = $opts['css'];
-			}
-		}
-				
-		return $stylesheets;
+        } else {
+            wp_enqueue_style( 'mailchimp-for-wp-form', MC4WP_LITE_PLUGIN_URL . "assets/css/form.css", array(), MC4WP_LITE_VERSION, 'all' );
+        }
+
+        return true;
 	}
 
 	/**
@@ -135,7 +135,7 @@ class MC4WP_Lite_Form {
 		$opts = mc4wp_get_options('form');
 
 		if ( ! function_exists( 'mc4wp_replace_variables' ) ) {
-			include_once MC4WP_LITE_PLUGIN_DIR . 'includes/template-functions.php';
+			include_once MC4WP_LITE_PLUGIN_DIR . 'includes/functions/template.php';
 		}
 
 		// allow developers to add css classes
@@ -151,10 +151,16 @@ class MC4WP_Lite_Form {
 			$form_markup = __( $opts['markup'] );
 
 			// replace special values
-			$form_markup = str_replace( array( '%N%', '{n}' ), $this->form_instance_number, $form_markup );
+			$form_markup = str_ireplace( array( '%N%', '{n}' ), $this->form_instance_number, $form_markup );
 			$form_markup = mc4wp_replace_variables( $form_markup, array_values( $opts['lists'] ) );
 
-			// allow plugins to add form fields
+			// insert captcha
+			if( function_exists( 'cptch_display_captcha_custom' ) ) {
+				$captcha_fields = '<input type="hidden" name="_mc4wp_has_captcha" value="1" /><input type="hidden" name="cntctfrm_contact_action" value="true" />' . cptch_display_captcha_custom();
+				$form_markup = str_ireplace( '[captcha]', $captcha_fields, $form_markup );
+			}
+
+			// allow plugins to add form fieldsq
 			do_action( 'mc4wp_before_form_fields', 0 );
 
 			// allow plugins to alter form content
@@ -234,6 +240,12 @@ class MC4WP_Lite_Form {
 		// ensure honeypot was not filed
 		if ( isset( $_POST['_mc4wp_required_but_not_really'] ) && ! empty( $_POST['_mc4wp_required_but_not_really'] ) ) {
 			$this->error = 'spam';
+			return false;
+		}
+
+		// check if captcha was present and valid
+		if( isset( $_POST['_mc4wp_has_captcha'] ) && $_POST['_mc4wp_has_captcha'] == 1 && function_exists( 'cptch_check_custom_form' ) && cptch_check_custom_form() !== true ) {
+			$this->error = 'invalid_captcha';
 			return false;
 		}
 
@@ -447,7 +459,7 @@ class MC4WP_Lite_Form {
 		}
 
 		$api = mc4wp_get_api();
-		$opts = mc4wp_get_options('form');
+		$opts = mc4wp_get_options( 'form' );
 
 		$lists = $this->get_lists();
 
@@ -464,13 +476,13 @@ class MC4WP_Lite_Form {
 
 		foreach ( $lists as $list_id ) {
 			// allow plugins to alter merge vars for each individual list
-			$list_merge_vars = apply_filters('mc4wp_merge_vars', $merge_vars, 0, $list_id);
+			$list_merge_vars = apply_filters( 'mc4wp_merge_vars', $merge_vars, 0, $list_id );
 
 			// send a subscribe request to MailChimp for each list
 			$result = $api->subscribe( $list_id, $email, $list_merge_vars, $email_type, $opts['double_optin'] );
 		}
 
-		do_action('mc4wp_after_subscribe', $email, $merge_vars, 0, $result);
+		do_action( 'mc4wp_after_subscribe', $email, $merge_vars, 0, $result );
 
 		if ( $result !== true ) {
 			// subscribe request failed, store error.
@@ -482,12 +494,6 @@ class MC4WP_Lite_Form {
 		// store user email in a cookie
 		$this->set_email_cookie( $email );
 
-		/**
-		* @deprecated Don't use, will be removed in v2.0
-		*/
-		$from_url = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
-		do_action('mc4wp_subscribe_form', $email, $list_id, 0, $merge_vars, $from_url); 
-		
 		// Store success result
 		$this->success = true;
 
@@ -532,7 +538,7 @@ class MC4WP_Lite_Form {
 
 			// make sure lists is an array
 			if( ! is_array( $lists ) ) {
-				$lists = array( $lists );
+				$lists = array( trim( $lists ) );
 			}
 
 		}
