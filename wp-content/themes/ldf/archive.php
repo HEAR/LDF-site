@@ -5,6 +5,8 @@
  */
 get_header(); ?>
 
+<!-- archive.php -->
+
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 		<?php if ( have_posts() ) : 
@@ -32,6 +34,8 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end archive.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

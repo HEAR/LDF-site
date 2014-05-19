@@ -15,6 +15,7 @@
 
 get_header(); ?>
 
+<!-- archive-agenda.php -->
 
  <?php // echo get_the_term_list( $post->ID, 'annee', 'People: ', ', ', '' ); ?> 
 
@@ -74,6 +75,8 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end archive-agenda.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

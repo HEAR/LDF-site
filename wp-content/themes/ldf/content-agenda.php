@@ -10,6 +10,8 @@
  */
 ?>
 
+<!-- content-agenda.php -->
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 		
 
@@ -81,12 +83,6 @@ if (has_post_thumbnail() && ! post_password_required()) : ?>
 
 
 
-	
-		
-		
-
-	
-
 	<?php if ( is_single() ) : // Only display Excerpts for Search ?>
 		<div class="entry-meta">
 			<?php twentythirteen_entry_meta(); ?>
@@ -110,8 +106,7 @@ if (has_post_thumbnail() && ! post_password_required()) : ?>
 		<?php endif; ?>
 	</footer><!-- .entry-meta -->
 	<?php endif; ?>
-	
-		
-
 
 </article><!-- #post -->
+
+<!-- end content-agenda.php -->

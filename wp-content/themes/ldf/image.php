@@ -11,6 +11,8 @@
 
 get_header(); ?>
 
+<!-- image.php -->
+
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'image-attachment' ); ?>>
@@ -78,5 +80,7 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end image.php -->
 
 <?php get_footer(); ?>

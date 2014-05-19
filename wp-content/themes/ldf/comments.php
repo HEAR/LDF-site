@@ -17,6 +17,8 @@ if ( post_password_required() )
 	return;
 ?>
 
+<!-- comments.php -->
+
 <div id="comments" class="comments-area">
 
 	<?php if ( have_comments() ) : ?>
@@ -53,9 +55,12 @@ if ( post_password_required() )
 	<?php endif; // have_comments() ?>
 
 	<?php
+		// http://codex.wordpress.org/Function_Reference/comment_form
 		comment_form(array(
 			'comment_notes_after'=>null,
 		));
 	?>
 
 </div><!-- #comments -->
+
+<!-- end comments.php -->

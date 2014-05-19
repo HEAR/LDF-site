@@ -14,6 +14,8 @@ Template Name: Links
  * @since Twenty Thirteen 1.0
  */
 get_header(); ?>
+
+<!-- links.php -->
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<?php
@@ -38,5 +40,7 @@ get_header(); ?>
 			<?php } ?>
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end links.php -->
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

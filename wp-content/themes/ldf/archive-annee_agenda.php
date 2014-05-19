@@ -15,6 +15,7 @@
 
 get_header(); ?>
 
+<!-- archive-annee_agenda.php -->
 
  <?php // echo get_the_term_list( $post->ID, 'annee', 'People: ', ', ', '' ); ?> 
 
@@ -74,6 +75,8 @@ qsdqsd
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end chive-annee_agenda.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

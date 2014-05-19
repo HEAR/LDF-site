@@ -77,9 +77,11 @@
 		<div class="nav-box">
 			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_class' => 'nav-menu' ) ); ?>
 			
-			<h3><a class="fs13 thema-toggle" ><?php _e( 'Acces thematique', 'twentythirteen' ); ?><span class="toggle">&or;</span></a></h3>
+			<h3><a class="fs13 thema-toggle" ><?php _e( 'Accès thématique', 'twentythirteen' ); ?><span class="toggle">&or;</span></a></h3>
 			
 			<?php wp_nav_menu( array( 'theme_location' => 'themas', 'menu_class' => 'nav-toggle nav-menu' ) ); ?>
 		</div>
 	</div>
 	<div id="main " class="main red-border scrollBar loaded site-main">
+
+<!-- end header.php -->
