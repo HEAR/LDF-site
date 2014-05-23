@@ -21,25 +21,12 @@ get_header(); ?>
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
-		<div class="breadthumb">
-	
-		</div>
 
-		<?php if ( have_posts() ) : 
-
-
- 	?>
-			<header class="archive-header">
+		<?php if ( have_posts() ) :  ?>
+			<!--<header class="archive-header">
 				<h1 class="archive-title"><?php printf( __( 'restitutions', 'twentythirteen' ), '<span></span>' ); ?></h1>
-<!--
-				<ul class="yearly">
-				<li><a>2012</a></li>
-				<li><a>2013</a></li>
-				<li><a>2014</a></li>
 
-				</ul>
-			!-->
-			</header><!-- .archive-header -->
+			</header>--><!-- .archive-header -->
 
 
 			<?php /* The loop */ ?>

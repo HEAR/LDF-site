@@ -1,5 +1,7 @@
 
-( function( $ ) {
+
+
+(function( $ ) {
 	var body    = $( 'body' ),
 	    _window = $( window );
 
@@ -10,27 +12,59 @@
 	 */
 
 
+	(function ($, F) {
+		F.transitions.resizeIn = function() {
+			var previous = F.previous,
+			    current  = F.current,
+			    startPos = previous.wrap.stop(true).position(),
+			    endPos   = $.extend({opacity : 1}, current.pos);
 
+			startPos.width  = previous.wrap.width();
+			startPos.height = previous.wrap.height();
 
+			previous.wrap.stop(true).trigger('onReset').remove();
+
+			delete endPos.position;
+
+			//current.inner.hide();
+
+			current.wrap.css(startPos).animate(endPos, {
+			    duration : current.nextSpeed,
+			    easing   : current.nextEasing,
+			    step     : F.transitions.step,
+			    complete : function() {
+			        F._afterZoomIn();
+
+			        current.inner.fadeIn("fast");
+			    }
+			});
+		};
+
+	}(jQuery, jQuery.fancybox));
 
 
 	$( function() {
 
+		//alert(body.height())
+		var settings = {
+			//contentWidth :'600px'
+		};
+  		
+	
+		$("#main").css('height', body.height()-130)
+		$("#main").css('marginTop', 80)
 
-			//alert(body.height())
-			var settings = {
-				//contentWidth :'600px'
-			};
-      		
-    	
-			$("#main").css('height', body.height()-130)
-			$("#main").css('marginTop', 80)
+		$(".thema-toggle").on( 'click', function() {
+				$(".nav-toggle").toggleClass('active');
 
-			$(".thema-toggle").on( 'click', function() {
-					$(".nav-toggle").toggleClass('active');
-			});
-		
-			body.addClass('loaded');
+				if( $(".nav-toggle").hasClass('active') ){
+					$('.thema-toggle span').text('∧');
+				}else{
+					$('.thema-toggle span').text('∨');
+				};
+		});
+	
+		body.addClass('loaded');
 		/*
 
 				$('#tz').tilezoom({	
@@ -44,54 +78,36 @@
 				//?? je sais pas, doc pas claire.. $('#tz').tilezoom('zoom',2 )
 		*/
 
+
 		// lang selectors
-		$(".lang_select").on( 'click', function() {
-			$(".lang").toggleClass('visible_lang');
-			$(".lang_select").toggleClass('toggled')
-		});
+		var langmenu = false;
+
+	    $('.langselector .selector').click(function (event) {
+
+	        if (!langmenu) {
+	            $(this).text('<');
+	            $('.langselector a').show('fast');
+	        } else {
+	            $(this).text('>');
+	            $('.langselector a').hide('fast');
+	        }
+	        langmenu = !langmenu;
+	    });
 
 
-		$(".lang").on( 'click', function() {
-			$(".lang").toggleClass('visible_lang');
-			$(".lang").removeClass('active_lang');
-			$(this).addClass('active_lang');
-			$(this).addClass('visible_lang');
-			$(".lang_select").removeClass('toggled')
-
-		});
-
-
-		function loadPageVar (sVar) {
-  			return decodeURI(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI(sVar).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
-		}
-		var lang_get = loadPageVar("lang");
-		if(lang_get){
-			
-
-					$("."+lang_get).addClass('active_lang');
-
-			$("."+lang_get).addClass('visible_lang');
-
-		}
-		else{
-			$(".fr").addClass('active_lang');
-			$(".fr").addClass('visible_lang');
-
-		}
+	    $("#content").fitVids();
 
 
 
-
-
-
-
+	    // rotation du logo
 		$angle = 0;
+		$decalage = -30;
 
 		// on calcule le nombre de jour de guerre
 		$warDuration = Math.round( (new Date('1918-10-11') - new Date('1914-08-03') ) /(1000*60*60*24) );
-		// on calcule le nombre de degrÃ©s par jours
+		// on calcule le nombre de degrés par jours
 		$degreePerDay = 180/$warDuration;
-		// on calcule les degrÃ©s du jour Ã  afficher
+		// on calcule les degrés du jour à afficher
 		$todayDegree =  Math.round( (new Date() - new Date('2014-08-03') ) /(1000*60*60*24) ) * $degreePerDay;
 
 		// on ne va pas en dessous de zero
@@ -102,10 +118,10 @@
 		if($todayDegree > 180){
 			$todayDegree = 180;
 		}
-		$todayDegree = $todayDegree+Math.random(1,55)
+		$todayDegree = $todayDegree/*+Math.random(1,55)*/ + $decalage;
 		// on fait tourner le logo en consÃ©quence (Ã  chaque chargement de page)
-		$('.head-box h1').css('-webkit-transform','rotate('+$todayDegree+'deg)');
-		$('.head-box h1').css('-moz-transform','rotate('+$todayDegree+'deg)');
+		$('.head-box #logo').css('-webkit-transform','rotate('+$todayDegree+'deg)');
+		$('.head-box #logo').css('-moz-transform','rotate('+$todayDegree+'deg)');
 
 		// POUR TESTE LA ROTATION
 		//var test = setInterval( tourne, 60);
@@ -119,7 +135,72 @@
 	       	$(obj_class).css( '-webkit-transform','rotate(156deg)');
 
 		}
-		//tourne('.head-box h1')
+		//tourne('.head-box #logo')
+		//
+		
+		// Pour appliquer fancy box sur toutes les galleries qui ne pointent pas vers la page media
+		$(".gallery").each(function(){
+
+			$("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif']", this)
+			.attr('rel', $(this).attr('id') )
+			.data('fancybox-group', $(this).attr('id'))
+			.addClass('fancybox-buttons');
+
+		})
+
+		
+		/**
+		 *
+		 * GESTION DE LA GALERIE
+		 * avec fancybox
+		 * 
+		 */
+		
+		$('.gallery figure').each(function(){
+			$('a', this).attr('title', $('figcaption', this).html() );
+		})
+
+		$('.fancybox-buttons').fancybox({
+			nextMethod : 'resizeIn',
+			nextSpeed  : 250,
+			prevMethoc : false,
+			wrapCSS    : 'fancybox-custom',
+			closeBtn  : true,
+			arrows : false,
+			loop : false,
+			margin:28,
+			padding : 0,
+			helpers : {
+				title : {
+					type : 'inside'
+				},
+			},
+			afterLoad : function() {
+				this.title = '<div class="legend"><strong>'+(this.index + 1) + ' / ' + this.group.length +'</strong>'+ (this.title ? ' — ' + this.title : '')+'</div>'+
+				'<div class="nav">'+
+				'<a title="Previous" class="prev" href="javascript:;"><span>Prev</span></a>'+
+				'<a title="Next" class="next" href="javascript:;"><span>Next</span></a>'+
+				'</div>';
+			},
+			afterShow : function(){
+				$('.next').click(function(event){
+					$.fancybox.next();
+				});
+				$('.prev').click(function(event){
+					$.fancybox.prev();
+				});
+
+				if(this.index == 0){
+					console.log('premier');
+					$('a.prev span').css('visibility','hidden');
+				}
+				if(this.index == this.group.length - 1){
+					console.log('dernier');
+					$('a.next span').css('visibility','hidden');
+				}
+			},
+		});
+
 
 	} );
 
@@ -187,7 +268,6 @@
 	        }
 	    }
 	]);
-
 
 
 	function myInitFuncDesktop(){
@@ -268,142 +348,6 @@
 			element.focus();
 		}
 	} );
-
-
-
-
-
-
-
-
-// QUAND ON CLIQUE SUR UN LIEN D'UNE GALLERIE
-		$('.gallery a').each(function(){
-			$(this).click(function(event){
-
-				// on prépare le viewer
-				$('body').append('<div class="overlay"></div>'+
-					'<div class="viewer">'+
-					'<div class="close">X</div>'+
-					'<ul class="bxslider"></ul>'+
-					'<div class="navigation">'+
-					'<div class="arrow"><span id="slider-prev" class="bouton"></span> <span id="slider-next" class="bouton"></span></div>'+
-					'<p class="legend"></p>'+
-					'</div>');
-
-				var listeImages = '';
-
-				var gallerieID =  '#'+$(this).parent().parent().parent().attr('id') ;
-
-				$(gallerieID+' a').each(function(){
-					var li = $('<li>').append(
-						$('<img>')
-						.attr( "src" , $(this).attr("href") ) 
-						.attr( "title" , $(this).attr("title") ) 
-					);
-					$('.bxslider').append(li);
-				});
-
-				var selectedID = $(this).parent().parent().index(gallerieID+' .gallery-item');
-
-				slider(selectedID);
-
-				event.preventDefault();
-
-			});
-
-		});
-
-		function slider( selectedID ){
-			$slider = $('.bxslider').bxSlider({
-				speed: 150,
-				mode: 'horizontal',
-				pager: false,
-				startSlide: selectedID,
-				adaptiveHeight: true,
-				infiniteLoop:false,
-				nextSelector: '#slider-next',
-				prevSelector: '#slider-prev',
-				nextText: '>',
-				prevText: '<',
-				onSliderLoad: function(index){
-					// on affiche la légende
-					// et on adapte la dimension verticale si nécessaire
-					legendAndSize(index);
-				},
-				onSlideBefore: function($slideElement, oldIndex, index){
-					// on affiche la légende
-					// et on adapte la dimension verticale si nécessaire
-					legendAndSize(index);
-				},
-			});
-
-			// on active les touches clavier
-			$(document).keydown(function(event){
-				if(event.which == 39){
-					//console.log('flêche droite');
-					$slider.goToNextSlide();
-				}
-				if(event.which == 37){
-					//console.log('flêche gauche');
-					$slider.goToPrevSlide();
-				}
-			});
-
-			// fermeture sur le bouton
-			$('.close').click(function(event){
-				$('.viewer').slideUp('slow', function(){
-					$slider.destroySlider();
-					$('.viewer').remove();
-					$('.overlay').remove();
-				});	
-			});
-
-			// fermeture sur click de l'overlay
-			$('.overlay').click(function(event){
-				$('.close').trigger('click');
-			})
-
-			/**
-			 * on affiche la légende et on adapte la dimension verticale si nécessaire
-			 * @param  {[type]} index [description]
-			 */
-			function legendAndSize(index){
-
-				// on affiche la légende
-				var legende = $('.bxslider li').eq(index).find('img').attr('title');
-				if( legende == "" ) legende = "Pas de légende.";
-
-				$('.legend')
-				.text(legende)
-				.css('opacity',0)
-				.animate({
-					opacity: 1,
-				}, 1000);
-
-				// on ajuste la taille verticale
-				var navH = $(".navigation").outerHeight(true);
-				var imgH = $('.bxslider li').eq(index).find('img').height();
-				var sliderH = $(window).height() - 
-								parseInt( $('.viewer').css('top') )*2 -
-								parseInt( $('.viewer').css('border-width') )*2 -
-								parseInt( $('.bx-wrapper').css('padding-top') )*2 -
-								navH;
-
-				if(imgH > sliderH){
-					$('.bxslider li').eq(index).find('img').height( sliderH );
-					$('.bxslider li').eq(index).find('img').width('auto');
-				}
-			}
-		}		
-
-
-
-
-
-
-
-
-
 
 
 	

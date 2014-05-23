@@ -284,6 +284,10 @@ img.alignnone {
 	margin: 5px 0;
 }
 
+img.v-middle{
+    vertical-align:middle;
+}
+
 
 /**
  * 6.0 Tables
@@ -363,6 +367,23 @@ img {
 	line-height: 1.5;
 	margin-bottom: 24px;
 	padding: 0;
+}
+
+.wp-caption-dd {
+	float:right;    
+    width:33%;
+    font-size: 14px;
+    padding: 0 0 10px;
+    margin: 1em 0 0.5em 1em;
+    word-wrap: break-word;
+    border-bottom: solid 1px #000;
+}
+
+.wp-caption.alignleft .wp-caption-dd,
+.wp-caption.alignright .wp-caption-dd{
+    width: 100%;
+    float:none;
+    margin:0 0 1em;
 }
 
 .mceTemp + ul,

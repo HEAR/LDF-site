@@ -37,11 +37,11 @@
 			<?php get_search_form(); ?>
 			<span class='langselector'>
 				<?php
-					languages_list();
-					function languages_list(){
+					$i = languages_list(0);
+					function languages_list($i){
 					    $languages = icl_get_languages('skip_missing=1'); // &orderby=code
 					    if(!empty($languages)){
-					    	//$i = 0;
+					    	
 					        foreach($languages as $l){
 					        	//echo $i>0 ? ' / ' : '';
 					            echo ' <span class="lang up">';
@@ -49,12 +49,15 @@
 					            echo substr($l['native_name'], 0,2 );
 					            if(!$l['active']) echo '</a>';
 					            echo '</span>';
-					            //$i++;
+					            $i++;
 					        }
 					    }
+					    return $i;
 					}
 				?>
+				<?php if($i>1) { ?>
 				<span class="selector">></span>
+				<?php } ?>
 			</span>
 
 			<a href="https://twitter.com/LDF_1914_2018" class="fa fa-twitter twitter"></a>

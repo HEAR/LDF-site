@@ -52,14 +52,9 @@ agenda _ annee
             </p>
         </div>
 
-
-
-
 			<header class="archive-header">
 				
-
-
-
+				
 			</header><!-- .archive-header -->
 
 

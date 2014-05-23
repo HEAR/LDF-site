@@ -21,42 +21,55 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 
 
-<?php $categories = get_terms( 'annee_restitution', array(
- 	'orderby'    => 'count',
- 	'hide_empty' => 1
- ) );
+		<?php
+		/*$categories = get_terms( 'annee_restitution', array(
+		 	'orderby'    => 'count',
+		 	'hide_empty' => true
+		 ) );
 
 
 
-     echo "<ul>";
-     foreach ( $categories as $term ) {
-       //echo "<li>" . $term->name . "</li>";
-        
-     }
-     echo "</ul>";
+		     echo "<ul>";
+		     foreach ( $categories as $term ) {
+		       echo "<li>" . $term->name . "</li>";
+		        
+		     }
+		     echo "</ul>";*/
 
-?>
+		?>
+
+		<?php $categories = get_terms( 'annee_agenda', array(
+								 	'orderby'    => 'count',
+								 	'hide_empty' => true
+									 ) );
+		echo "<ul class='flat'>";
+		foreach ( $categories as $term ) {
+			//echo icl_object_id($term->term_id,'annee_agenda',true, ICL_LANGUAGE_CODE).' ';
+			//if($term->term_id == icl_object_id($term->term_id,'annee_agenda',false)){
+			echo "<li class='clr-bc'><a href='".icl_get_home_url()."annee_agenda/". $term->slug ."'>" . $term->name . "</a></li>";
+			//echo '<li><a href="'.$category_url.'?annee_agenda='. $term->slug.'">' . $term->name . '</a></li>';
+			//}
+		}
+		echo "</ul>";
+		?>
 
 		<?php if ( have_posts() ) : 
 
 
- 		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+ 			$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
         ?>
-        <h1>Agenda /<?php echo $term->name;?></h1>
+        <!--<h1>Agenda /<?php echo $term->name;?></h1>
         <div class="intro2">
             <p>
             <?php echo $term->description;?>
             </p>
-        </div>
+        </div>-->
 
 
-<!--
-
-			<header class="archive-header">
-				<h1 class="archive-title"><?php printf( __( '%s /Thématiques', 'twentythirteen' ), '<span>' . get_post_format_string( get_post_format() ) . '</span>' ); ?></h1>
-			</header><!-- .archive-header 
-
-		!-->
+		<!--<header class="archive-header">
+			<h1 class="archive-title"><?php printf( __( '%s /Thématiques', 'twentythirteen' ), '<span>' . get_post_format_string( get_post_format() ) . '</span>' ); ?></h1>
+		</header>-->
+		<!-- .archive-header !-->
 
 			<?php /* The loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
