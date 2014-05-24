@@ -12,6 +12,9 @@
  */
 
 if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
+
+<!-- sidebar.php -->
+
 	<div id="tertiary" class="sidebar-container" role="complementary">
 		<div class="sidebar-inner">
 			<div class="widget-area">
@@ -19,4 +22,7 @@ if ( is_active_sidebar( 'sidebar-2' ) ) : ?>
 			</div><!-- .widget-area -->
 		</div><!-- .sidebar-inner -->
 	</div><!-- #tertiary -->
+	
+<!-- end sidebar.php -->
+
 <?php endif; ?>

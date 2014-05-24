@@ -8,6 +8,8 @@
  */
 ?>
 
+<!-- content-none.php -->
+
 <header class="page-header">
 	<h1 class="page-title"><?php _e( 'Nothing Found', 'twentythirteen' ); ?></h1>
 </header>
@@ -29,3 +31,5 @@
 
 	<?php endif; ?>
 </div><!-- .page-content -->
+
+<!-- end content-none.php -->

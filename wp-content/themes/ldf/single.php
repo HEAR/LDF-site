@@ -1,5 +1,7 @@
 <?php
 get_header(); ?>
+
+<!-- single.php -->
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 			<?php /* The loop */ ?>
@@ -11,5 +13,8 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end single.php -->
+
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

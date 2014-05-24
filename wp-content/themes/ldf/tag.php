@@ -13,6 +13,8 @@
 
 get_header(); ?>
 
+<!-- tag.php -->
+
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
@@ -38,6 +40,8 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end tag.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

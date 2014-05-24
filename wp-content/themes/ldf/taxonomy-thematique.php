@@ -15,44 +15,38 @@
 
 get_header(); ?>
 
+<!-- taxonomy-thematique.php -->
+
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
+			<ul class='flat'>
+			<?php 
+				$categories = get_terms( 'annee_restitution', array(
+					'orderby'    => 'count',
+					'hide_empty' => 1
+				) );
 
-<?php $categories = get_terms( 'annee_restitution', array(
- 	'orderby'    => 'count',
- 	'hide_empty' => 1
- ) );
-
-
-
-     echo "<ul>";
-     foreach ( $categories as $term ) {
-       echo "<li>" . $term->name . "</li>";
-        
-     }
-     echo "</ul>";
-
-?>
+			     foreach ( $categories as $term ) {
+			       echo "<li class='clr-bc'><a href='".icl_get_home_url()."annee_restitution/". $term->slug ."'>" . $term->name . "</a></li>";
+			     }
+			?>
+			</ul>
 
 		<?php if ( have_posts() ) : 
-
-
- 		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
+ 			$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
         ?>
         <h1><?php echo $term->name;?></h1>
         <div class="intro2">
-            <p>
-            <?php echo $term->description;?>
-            </p>
+            <?php echo apply_filters( 'the_content', $term->description );?>
         </div>
 
 
 
 
-			<header class="archive-header">
+			<!--<header class="archive-header">
 				<h1 class="archive-title"><?php printf( __( '%s /Thématiques', 'twentythirteen' ), '<span>' . get_post_format_string( get_post_format() ) . '</span>' ); ?></h1>
-			</header><!-- .archive-header -->
+			</header>--><!-- .archive-header -->
 
 			<?php /* The loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -67,6 +61,8 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end taxonomy-thematique.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

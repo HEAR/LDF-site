@@ -13,20 +13,14 @@
 
 get_header(); ?>
 
+<!-- page.php -->
+
 	<div id="primary" class="content-area ">
 		<div id="content" class="site-content" role="main">
-
-
-		
 
 			<?php /* The loop */ ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 				
-
-				
-
-
-
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<header class="entry-header">
 
@@ -47,12 +41,9 @@ get_header(); ?>
 					}
 					echo $lineage;
 					
-				?>
+				?>				
 
-
-					
-
-						<h1 class="entry-title"><?php the_title(); ?></h1>
+						<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link(' <i class="fa fa-pencil"></i>');?></h1>
 					</header><!-- .entry-header -->
 
 					<div class="entry-content">
@@ -60,9 +51,6 @@ get_header(); ?>
 						<?php wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
 					</div><!-- .entry-content -->
 
-					<footer class="entry-meta">
-						<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
-					</footer><!-- .entry-meta -->
 				</article><!-- #post -->
 
 				<?php comments_template(); ?>
@@ -70,6 +58,8 @@ get_header(); ?>
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end page.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

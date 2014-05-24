@@ -15,28 +15,28 @@
 
 get_header(); ?>
 
+<!-- archive-annee_agenda.php -->
 
  <?php // echo get_the_term_list( $post->ID, 'annee', 'People: ', ', ', '' ); ?> 
 
 	<div id="primary" class="content-area">
 		<div id="content" class="site-content" role="main">
 
-<?php $categories = get_terms( 'annee_agenda', array(
- 	'orderby'    => 'count',
- 	'hide_empty' => 0
- ) );
+		<?php $categories = get_terms( 'annee_agenda', array(
+		 	'orderby'    => 'count',
+		 	'hide_empty' => 0
+		 ) );
 
 
 
-     echo "<ul>";
-     foreach ( $categories as $term ) {
-      // echo "<li><a href='".esc_url( home_url( '' ) )."/annee_agenda/". $term->slug ."'>" . $term->name . "</a></li>";
-        
-     }
-     echo "</ul>";
+		     echo "<ul>";
+		     foreach ( $categories as $term ) {
+		     	//echo "<li><a href='".esc_url( home_url( '' ) )."/annee_agenda/". $term->slug ."'>" . $term->name . "</a></li>";
+		        
+		     }
+		     echo "</ul>";
 
-?>
-qsdqsd
+		?>
 
 		<?php if ( have_posts() ) : 
 
@@ -50,14 +50,8 @@ qsdqsd
             </p>
         </div>
 
-
-
-
 			<header class="archive-header">
 				
-
-
-
 			</header><!-- .archive-header -->
 
 
@@ -74,6 +68,8 @@ qsdqsd
 
 		</div><!-- #content -->
 	</div><!-- #primary -->
+
+<!-- end chive-annee_agenda.php -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

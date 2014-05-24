@@ -10,33 +10,61 @@
  */
 ?>
 
+<!-- content.php -->
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<header class="entry-header">
+		<?php
 
-<div class="entry-meta">
+		if(  in_array( get_post_type( get_the_ID() ), array('post', 'agenda', 'restitutions') )  ) : ?> 
+		<div class="entry-meta">
 			<?php twentythirteen_entry_meta(); ?>
-			<?php edit_post_link( __( 'Edit', 'twentythirteen' ), '<span class="edit-link">', '</span>' ); ?>
-			
-		</div><!-- .entry-meta -->
-<span class="gblack"> </span>
-		<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
+			<?php $meta_date = get_post_meta( get_the_ID(), 'date', true );
+			if( ! empty( $meta_date ) ) {
+			  echo '<span class="entry_custom_date">'.$meta_date.'</span>';
+			}  ?>
+			<span class="entry_terms clr">
+				<?php $terms = get_the_terms( $post->ID , 'event-type' ); 
+				if($terms){
+					foreach( $terms as $term ) {  
+						echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">'. $term->name.'</a>';
+						unset($term); 
+					}
+				}
+				?>
+				
+				<?php $terms = get_the_terms( $post->ID , 'thematique' ); 
+				if($terms){
+					foreach( $terms as $term ) {  
+						echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">' . $term->name .'</a>';
+						unset($term); 
+					}
+				}
+				?>
+
+				<?php $terms = get_the_terms( $post->ID , 'annee_restitution' ); 
+				if($terms){
+					foreach( $terms as $term ) {  
+						echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">' . $term->name .'</a>';
+						unset($term); 
+					}
+				}
+				?>
+
+			</span>
+		</div>
+		<?php endif; ?>
+
+		<?php if ( has_post_thumbnail() && ! post_password_required() && !is_single() ) : ?>
 		<div class="entry-thumbnail">
 			<?php the_post_thumbnail(); ?>
 		</div>
 		<?php endif; ?>
 
 
-<?php
-$key_1_value = get_post_meta( get_the_ID(), 'date', true );
-// check if the custom field has a value
-if( ! empty( $key_1_value ) ) {
-  echo $key_1_value;
-} 
-?>
-
 		<?php if ( is_single() ) : ?>
- <?php //do_action('icl_navigation_breadcrumb','p'); ?>
+ 		<?php //do_action('icl_navigation_breadcrumb','p'); ?>
 
 			<?php /*
 			<?php $terms = get_the_terms( $post->ID , 'thematique' ); foreach( $terms as $term ) {  print $term->slug;  unset($term); } ?>
@@ -44,25 +72,30 @@ if( ! empty( $key_1_value ) ) {
 			/ <?php $terms = get_the_terms( $post->ID , 'event-type' ); foreach( $terms as $term ) {  print $term->slug;  unset($term); } ?>
  			*/?>
 
-		<h1 class="entry-title"><?php the_title(); ?></h1>
+		<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link('&nbsp;<i class="fa fa-pencil"></i>');?></h1>
 		<?php else : ?>
 		<h1 class="entry-title">
-			<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a>
+			<a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link('&nbsp;<i class="fa fa-pencil"></i>');?>
 		</h1>
+
 		<?php endif; // is_single() ?>
 
 		
 	</header><!-- .entry-header -->
 
-	<?php if ( is_search() ) : // Only display Excerpts for Search ?>
+	<?php if ( is_search() || (get_post_type( get_the_ID())=='restitutions' && !is_single() ) ) : // Only display Excerpts for Search ?>
+
 	<div class="entry-summary">
 		<?php the_excerpt(); ?>
 	</div><!-- .entry-summary -->
+	
 	<?php else : ?>
+	
 	<div class="entry-content">
 		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentythirteen' ) ); ?>
 		<?php // wp_link_pages( array( 'before' => '<div class="page-links"><span class="page-links-title">' . __( 'Pages:', 'twentythirteen' ) . '</span>', 'after' => '</div>', 'link_before' => '<span>', 'link_after' => '</span>' ) ); ?>
 	</div><!-- .entry-content -->
+	
 	<?php endif; ?>
 
 	<footer class="entry-meta">
@@ -77,3 +110,5 @@ if( ! empty( $key_1_value ) ) {
 		<?php endif; ?>
 	</footer><!-- .entry-meta -->
 </article><!-- #post -->
+
+<!-- end content.php -->
