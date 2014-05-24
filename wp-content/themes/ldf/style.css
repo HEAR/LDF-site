@@ -816,10 +816,10 @@ footer.entry-meta{
 
 #content p{
     -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    -o-hyphens: auto;
-    hyphens: auto;
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
+         -o-hyphens: auto;
+            hyphens: auto;
     word-wrap: break-word;
 }
 
@@ -841,6 +841,15 @@ h1.entry-title a{
     margin: 18px 0 25px 0;
     text-transform: uppercase;
     color: #000;
+}
+
+.entry-thumbnail+h1.entry-title{
+    -webkit-hyphens: auto;
+       -moz-hyphens: auto;
+        -ms-hyphens: auto;
+         -o-hyphens: auto;
+            hyphens: auto;
+    word-wrap: break-word;
 }
 
 h1 a:hover,
@@ -1439,6 +1448,15 @@ width: 100%;
     .entry-thumbnail img{
         width:100%;
         height:auto;
+    }
+
+    .entry-thumbnail+h1.entry-title{
+        -webkit-hyphens: none;
+           -moz-hyphens: none;
+            -ms-hyphens: none;
+             -o-hyphens: none;
+                hyphens: none;
+        word-wrap: initial;
     }
 
 

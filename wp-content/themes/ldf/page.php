@@ -23,27 +23,27 @@ get_header(); ?>
 				
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<header class="entry-header">
-						<?php if( !is_front_page() ) :?>
-						<div class="entry-meta">
+						<?php 
+							$itisme	  = get_post($post->ID);
+							$parentID = $itisme->post_parent;
 
-								<?php
-								$itisme=get_post($post->ID);
-								$parentID=$itisme->post_parent;
+							if( !is_front_page() && $parentID!=0) :
+
 								if($parentID){
-									$lineage= get_the_title($post_ID)/*$itisme->post_name*/;
+									$lineage  = get_the_title($post_ID)/*$itisme->post_name*/;
 								}
 								while( $parentID != 0 ){
-									$parent=get_post($parentID);
-									$lineage= '<a href="'.get_permalink($parentID).'">'.get_the_title($parentID)/*.$parent->post_name*/.'</a> / '.$lineage;
-									$parentID=$parent->post_parent;
+									$parent   = get_post($parentID);
+									$lineage  = '<a href="'.get_permalink($parentID).'">'.get_the_title($parentID)/*.$parent->post_name*/.'</a> / '.$lineage;
+									$parentID = $parent->post_parent;
 								}
 								
 								if($parentID){
 									//$lineage=$itisme->post_name;
 								}
-								echo $lineage;
-								
-							?>				
+						?>
+						<div class="entry-meta">
+								<?php echo $lineage; ?>				
 						</div>
 						<?php endif; ?>
 
