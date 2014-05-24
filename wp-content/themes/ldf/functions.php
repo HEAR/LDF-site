@@ -187,6 +187,8 @@ add_filter( 'get_search_form', 'my_search_form' );
 function ldf_scripts_styles() {
 	$rand = rand(5, 150000);
 
+	wp_enqueue_style( 'ldf-style', get_stylesheet_uri(), array('twentythirteen-style'), '2014-05-19' );
+
 	// STYLES 
 	wp_enqueue_style( 'fonts-awesome', 		'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' , 		array(), null );
 	wp_enqueue_style( 'typos_css', 			 get_stylesheet_directory_uri() . '/css/LignesDeFront.css?='.$rand , 			array(), null );
@@ -195,8 +197,8 @@ function ldf_scripts_styles() {
 
 	// SCRIPTS
 	wp_enqueue_script( 'jrespond', 			 get_stylesheet_directory_uri() . '/js/jRespond.min.js', 						array( 'jquery' ), $rand, true );
-	wp_enqueue_script( 'mCustomScrollbar',   get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js',  array( 'jquery' ), '2013-07-18', true );
-	wp_enqueue_script( 'scrollpane_mousejs', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', 					array( 'jquery' ), '2013-07-18', true );
+	wp_enqueue_script( 'mCustomScrollbar',   get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js',  array( 'jquery' ), '2014-05-19', true );
+	wp_enqueue_script( 'scrollpane_mousejs', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', 					array( 'jquery' ), '2014-05-19', true );
 	wp_enqueue_script( 'fitvid', 			 get_stylesheet_directory_uri() . '/js/jquery.fitvids.js', 						array( 'jquery' ), $rand, true );
 	wp_enqueue_script( 'fancybox', 			 get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox.js', 				array( 'jquery' ), $rand, true );
 	wp_enqueue_script( 'mousewheel', 		 get_stylesheet_directory_uri() . '/js/jquery.mousewheel-3.0.6.pack.js', 		array( 'jquery' ), $rand, true );

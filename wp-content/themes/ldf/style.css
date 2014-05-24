@@ -1430,6 +1430,16 @@ width: 100%;
         font-size: 0.9em;
     }
 
+    .entry-thumbnail{
+        float: none;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .entry-thumbnail img{
+        width:100%;
+        height:auto;
+    }
 
 
 }
