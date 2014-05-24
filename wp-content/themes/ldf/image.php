@@ -17,8 +17,6 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 			<article id="post-<?php the_ID(); ?>" <?php post_class( 'image-attachment' ); ?>>
 				<header class="entry-header">
-					<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link('&nbsp;<i class="fa fa-pencil"></i>');?></h1>
-
 					<div class="entry-meta">
 						<?php
 							$published_text = __( '<span class="attachment-meta"><time class="entry-date" datetime="%1$s">%2$s</time> / <a href="%3$s" title="Return to %4$s" rel="gallery">%5$s</a></span>', 'twentythirteen' );
@@ -44,6 +42,9 @@ get_header(); ?>
 							);*/
 						?>
 					</div><!-- .entry-meta -->
+					<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link('&nbsp;<i class="fa fa-pencil"></i>');?></h1>
+
+					
 				</header><!-- .entry-header -->
 
 				<div class="entry-content">
