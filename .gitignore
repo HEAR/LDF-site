@@ -17,6 +17,3 @@ wp-content/*
 !wp-content/advanced-cache.php
 !wp-content/languages
 !wp-content/maintenance
-
-
-.DS_Store
