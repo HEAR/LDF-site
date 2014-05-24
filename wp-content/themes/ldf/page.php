@@ -23,6 +23,7 @@ get_header(); ?>
 				
 				<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 					<header class="entry-header">
+						<?php if( !is_front_page() ) :?>
 						<div class="entry-meta">
 
 								<?php
@@ -44,6 +45,7 @@ get_header(); ?>
 								
 							?>				
 						</div>
+						<?php endif; ?>
 
 						<h1 class="entry-title"><?php the_title(); ?><?php edit_post_link(' <i class="fa fa-pencil"></i>');?></h1>
 					</header><!-- .entry-header -->
