@@ -332,7 +332,11 @@ ul.flat li a{
 
 
 
-/*thema nav*/
+/**
+ * ----------------------------------------------------------------------------
+ * NAVIGATION THEMATIQUES
+ * ----------------------------------------------------------------------------
+ */
 
 .nav-toggle{
     display: none;
@@ -380,28 +384,16 @@ ul.flat li a{
     margin-left: 7px;
 }
 
-
-/*
-footer {
-    border-width: 5px 0 0;
-    float: left;
-    height: auto;
-    margin: 0 auto 0;
-    padding-bottom: 0;
-    padding-top: 1%;
- 
-    width:100%;
-    text-align:center;
-}
-*/
-
 .post-type-archive-agenda .entry_custom_date{
     color:#000;
 }
 
 
-
-/*links page*/
+/**
+ * ----------------------------------------------------------------------------
+ * links page
+ * ----------------------------------------------------------------------------
+ */
 
 body.page-template-links-php{
 
@@ -459,13 +451,25 @@ body.page-template-links-php article {
  * ----------------------------------------------------------------------------
  */
 
- .entry_terms:after{
+
+ /*.entry_terms:after,*/
+ div.entry-meta:after{
     content: "";
     display: block;
     width: 30px;
     border-bottom: solid 1px #000;
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+div.entry-right-part h1.entry-title,
+div.entry-meta + h1.entry-title,
+div.entry-thumbnail + h1.entry-title{
+    margin-top : 0;
+}
+
+div.intro2{
+    margin-bottom: 1.5em;
 }
 
 .entry-content h2,
@@ -578,8 +582,8 @@ body.page-template-links-php article {
     width: 600px;*/
 }
 .entry-right-part.has_thumb-1 {
-    float: left;
-    width: 300px;
+    /*float: left;
+    width: 300px;*/
 }
 
 
@@ -717,65 +721,47 @@ body.page-template-links-php article {
  * ----------------------------------------------------------------------------
  */
 
- .navigation{
-     width:100%;
- }
- .navigation .nav-previous {
-    float: left;
-}
 
-.navigation .nav-next {
-    float: right;
-}
-
-
-
-.post-navigation,
-.paging-navigation {
+.navigation {
     width:100%;
 }
 
-.post-navigation .nav-links,
-.paging-navigation .nav-links {
+.navigation {
     margin: 0 auto;
     font-size: 14px;
+    display: table;
+    width: 100%;
 }
 
-
-.post-navigation a[rel="prev"],
-.paging-navigation .nav-previous{
-    float: left;
+.navigation .nav-previous,
+.post-navigation a[rel="prev"]{
     text-align: left;
-    width: 33%;
-    /*padding-right:5%;*/
-    /*border-right: solid 1px red;*/
+    width: 50%;
+    display: table-cell;
+    padding: 0 10% 0 0;
 }
 
-.post-navigation a[rel="next"],
-.paging-navigation .nav-next{
-    float: right;
+.navigation .nav-next,
+.post-navigation a[rel="next"]{
     text-align: right;
-    width: 33%;
-    /*padding-left:5%;
-    border-left: solid 1px red;*/
+    width: 50%;
+    display: table-cell;
+    padding: 0 0 0 10%;
 }
-
-
 
 .comments-link {
-    float: left;
     text-align: right;
     width: 100%;
+    margin-top: 1em;
 }
 
 .wp-caption-text{
     border-bottom: 1px solid #000000;
     float: right;
     font-size: 12px;
-    /*margin: 2px 0 0 10px;*/
-    /*padding-bottom: 4px;*/
 
 }
+
 #zoom-holder{
     height: 100%;
     position: fixed;
@@ -783,10 +769,10 @@ body.page-template-links-php article {
     width: 100%;
     z-index: -1;
 }
-#zoom-holder img{
 
+#zoom-holder img{
 }
-/**/
+
 #tz {
     height: 100%;
     position: fixed;
@@ -801,19 +787,31 @@ body.page-template-links-php article {
     padding-bottom: 10px;
 }
 
-.date{color:#000;}
+footer.entry-meta{
+    padding: 0;
+}
+
+.date,
+.date a{
+    color:#000;
+}
+.date a:hover{
+    color:#EF312F;
+}
 
 .entry-meta span {
     margin-right: 7px;
 }
 
 
-/*
- the post
+/**
+ * ----------------------------------------------------------------------------
+ * THE POST
+ * ----------------------------------------------------------------------------
  */
 
- #content p{
-    /*text-align: justify;*/
+
+#content p{
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     -ms-hyphens: auto;
@@ -847,10 +845,6 @@ h1.entry-title a:hover,
 .post-edit-link:hover{
     color:#EF312F;
 }
-
-/*body.post-type-archive-agenda h1.entry-title a {
-color:#EF312F;
-}*/
 
 
 /*contact form*/
@@ -889,29 +883,36 @@ color:#EF312F;
  * ----------------------------------------------------------------------------
  */
 
- .comments-title,
- .comment-list,
- .comment-reply-title,
- .must-log-in,
- .comment-respond
- .comment-form,
- .comment-respond iframe {
-    display: block;
-    float: left;
-    margin-left: auto;
-    margin-right: auto;
-    /* max-width: 504px; */
-    width: 100%;
+
+#comments{
+    border-top: 1px solid #282828;
+    margin-top: 1em;
+}
+
+.comments-title,
+.comment-list,
+.comment-reply-title,
+.must-log-in,
+.comment-respond
+.comment-form,
+.comment-respond iframe {
+display: block;
+float: left;
+margin-left: auto;
+margin-right: auto;
+/* max-width: 504px; */
+width: 100%;
 }
 
 .comments-title {
-    border-top: 1px solid #282828;
     font-size: 1em;
     margin-bottom: 0;
-    margin-top:20px;
+    margin-top:0.5em;
     padding: 4px 0 0;
     text-transform:uppercase;
-
+}
+.comments-title+.comments-title{
+    border-top: 1px solid #282828;
 }
 
 .comment-list, .comment-list .children {
@@ -927,7 +928,7 @@ color:#EF312F;
 
 
 .comment-body {
-    padding: 24px 0;
+    padding: 0.5em 0;
     position: relative;
     border-bottom: 1px solid #282828;
 
@@ -1023,7 +1024,7 @@ color:#EF312F;
 
 /* Comment form */
 .comment-respond {
-    padding: 30px 0;
+    /*padding: 30px 0;*/
 }
 
 .comment .comment-respond {
@@ -1033,7 +1034,7 @@ color:#EF312F;
 
 .comment-reply-title {
     font-size: 1em;
-    margin: 0;
+    margin-top: 0.5em;
     padding: 6px 0 0;
     text-transform: uppercase;
 }
@@ -1138,7 +1139,6 @@ color:#EF312F;
     width: auto;
 }
 
-
 #commentform textarea {
     float: right;
     max-width: 510px;
@@ -1150,7 +1150,6 @@ color:#EF312F;
   font-size: 0.75em;
   float: left;
 }
-
 
 
 
@@ -1414,9 +1413,8 @@ color:#EF312F;
         width:100%;
         padding-right: 10px;
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-        box-sizing: border-box;
-
+           -moz-box-sizing: border-box; /* Firefox, other Gecko */
+                box-sizing: border-box;
         word-wrap: break-word;
     }
 
@@ -1526,7 +1524,7 @@ color:#EF312F;
         width:100%;
         padding-right: 10px;
         -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-           -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+           -moz-box-sizing: border-box; /* Firefox, other Gecko */
                 box-sizing: border-box;
     }
 

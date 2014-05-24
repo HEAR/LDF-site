@@ -17,26 +17,51 @@
 	<header class="entry-header">
 		<?php
 
-		if(  in_array( get_post_type( get_the_ID() ), array('post', 'agenda') )  ){ ?> 
+		if(  in_array( get_post_type( get_the_ID() ), array('post', 'agenda', 'restitutions') )  ) : ?> 
 		<div class="entry-meta">
 			<?php twentythirteen_entry_meta(); ?>
-		</div><!-- .entry-meta -->
-		<?php } ?>
-		<!--<span class="gblack"> </span>-->
+			<?php $meta_date = get_post_meta( get_the_ID(), 'date', true );
+			if( ! empty( $meta_date ) ) {
+			  echo '<span class="entry_custom_date">'.$meta_date.'</span>';
+			}  ?>
+			<span class="entry_terms clr">
+				<?php $terms = get_the_terms( $post->ID , 'event-type' ); 
+				if($terms){
+					foreach( $terms as $term ) {  
+						echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">'. $term->name.'</a>';
+						unset($term); 
+					}
+				}
+				?>
+				
+				<?php $terms = get_the_terms( $post->ID , 'thematique' ); 
+				if($terms){
+					foreach( $terms as $term ) {  
+						echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">' . $term->name .'</a>';
+						unset($term); 
+					}
+				}
+				?>
+
+				<?php $terms = get_the_terms( $post->ID , 'annee_restitution' ); 
+				if($terms){
+					foreach( $terms as $term ) {  
+						echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">' . $term->name .'</a>';
+						unset($term); 
+					}
+				}
+				?>
+
+			</span>
+		</div>
+		<?php endif; ?>
+
 		<?php if ( has_post_thumbnail() && ! post_password_required() && !is_single() ) : ?>
 		<div class="entry-thumbnail">
 			<?php the_post_thumbnail(); ?>
 		</div>
 		<?php endif; ?>
 
-
-		<?php
-		$key_1_value = get_post_meta( get_the_ID(), 'date', true );
-		// check if the custom field has a value
-		if( ! empty( $key_1_value ) ) {
-		  echo $key_1_value;
-		} 
-		?>
 
 		<?php if ( is_single() ) : ?>
  		<?php //do_action('icl_navigation_breadcrumb','p'); ?>

@@ -21,28 +21,12 @@ get_header(); ?>
 		<div id="content" class="site-content" role="main">
 
 
-		<?php
-		/*$categories = get_terms( 'annee_restitution', array(
-		 	'orderby'    => 'count',
-		 	'hide_empty' => true
-		 ) );
-
-
-
-		     echo "<ul>";
-		     foreach ( $categories as $term ) {
-		       echo "<li>" . $term->name . "</li>";
-		        
-		     }
-		     echo "</ul>";*/
-
-		?>
-
-		<?php $categories = get_terms( 'annee_agenda', array(
-								 	'orderby'    => 'count',
-								 	'hide_empty' => true
-									 ) );
-		echo "<ul class='flat'>";
+		<ul class='flat'>
+		<?php $categories = get_terms( 'annee_agenda',
+										array(
+										 	'orderby'    => 'count',
+										 	'hide_empty' => true
+										));
 		foreach ( $categories as $term ) {
 			//echo icl_object_id($term->term_id,'annee_agenda',true, ICL_LANGUAGE_CODE).' ';
 			//if($term->term_id == icl_object_id($term->term_id,'annee_agenda',false)){
@@ -50,20 +34,19 @@ get_header(); ?>
 			//echo '<li><a href="'.$category_url.'?annee_agenda='. $term->slug.'">' . $term->name . '</a></li>';
 			//}
 		}
-		echo "</ul>";
 		?>
+		</ul>
 
 		<?php if ( have_posts() ) : 
 
-
  			$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
         ?>
-        <!--<h1>Agenda /<?php echo $term->name;?></h1>
+        <h1>Agenda /<?php echo $term->name;?></h1>
         <div class="intro2">
             <p>
             <?php echo $term->description;?>
             </p>
-        </div>-->
+        </div>
 
 
 		<!--<header class="archive-header">
@@ -71,9 +54,21 @@ get_header(); ?>
 		</header>-->
 		<!-- .archive-header !-->
 
-			<?php /* The loop */ ?>
+			<?php /* The loop */
+				$paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+
+                global $wp_query;
+                $args = array_merge(
+                	$wp_query->query_vars,
+                	array(
+                		'post_status' => array('future','publish'),
+                		'paged' => $paged, 
+                	)
+                );
+                query_posts($args)
+            ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
+				<?php get_template_part( 'content', 'agenda' ); ?>
 			<?php endwhile; ?>
 
 			<?php twentythirteen_paging_nav('posts'); ?>

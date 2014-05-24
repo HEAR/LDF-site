@@ -64,9 +64,21 @@ get_header(); ?>
 	</header><!-- .archive-header -->
 
 
-			<?php /* The loop */ ?>
+			<?php /* The loop */
+                $paged = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
+
+                global $wp_query;
+                $args = array_merge(
+                    $wp_query->query_vars,
+                    array(
+                        'post_status' => array('future','publish'),
+                        'paged' => $paged, 
+                    )
+                );
+                query_posts($args)
+            ?>
 			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', 'agenda' ); ?>
+				<?php get_template_part( 'content', get_post_type() ); ?>
 			<?php endwhile; ?>
 
 			<?php twentythirteen_paging_nav('agenda'); ?>

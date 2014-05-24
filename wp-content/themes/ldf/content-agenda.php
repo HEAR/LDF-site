@@ -16,6 +16,36 @@
 
 
 		<header class="entry-header">
+
+			<div class="entry-meta">
+				<?php
+				$meta_date = get_post_meta( get_the_ID(), 'date', true );
+				// check if the custom field has a value
+				if( ! empty( $meta_date ) ) {
+					echo '<span class="entry_custom_date">'.$meta_date.' </span>';
+				} else{
+							 	
+				 	$terms = get_the_terms( $post->ID , 'annee_agenda' );
+				 	if($terms){
+				 		foreach( $terms as $term ) { 
+							echo '<span class="entry_custom_date">'.$term->slug.' </span>';
+				 	 		unset($term); 
+				 		 }
+				 	 }
+							 	
+				} ?>
+				<span class="entry_terms clr">
+					<?php $terms = get_the_terms( $post->ID , 'event-type' ); 
+					if($terms){
+						foreach( $terms as $term ) {  
+							echo ' <span class="black_c">/</span> '. '<a href="' . get_term_link( $term ) .'"">' . $term->name .'</a>';
+							unset($term); 
+						}
+					}
+					?>
+				</span>
+			</div>
+
 			<?php 
 
 			$has_thumb = has_post_thumbnail();
@@ -29,37 +59,6 @@
 
 
 			<?php echo '<div class="entry-right-part has_thumb-'.$has_thumb. '">'; ?>
-		
-
-			<?php
-			$key_1_value = get_post_meta( get_the_ID(), 'date', true );
-			// check if the custom field has a value
-			if( ! empty( $key_1_value ) ) {
-				echo '<span class="entry_custom_date">'.$key_1_value.' </span>';
-			} 
-		
-			// taxo fallback
-			else{
-						 	
-			 	$terms = get_the_terms( $post->ID , 'annee_agenda' );
-			 	if($terms){
-			 		foreach( $terms as $term ) { 
-						echo '<span class="entry_custom_date">'.$term->slug.' </span>';
-			 	 		unset($term); 
-			 		 }
-			 	 }
-						 	
-			}
-			?>
-			<span class="entry_terms clr">
-				<?php $terms = get_the_terms( $post->ID , 'event-type' ); 
-				if($terms){
-					foreach( $terms as $term ) {  
-						echo ' <span class="black_c">/</span> '. $term->name;  unset($term); 
-					}
-				}
-				?>
-			</span>
 			
 			<!--<span class="gblack">&nbsp;</span>-->
 

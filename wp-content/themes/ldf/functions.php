@@ -186,26 +186,22 @@ add_filter( 'get_search_form', 'my_search_form' );
  */
 function ldf_scripts_styles() {
 	$rand = rand(5, 150000);
-	wp_enqueue_script( 'jrespond', get_stylesheet_directory_uri() . '/js/jRespond.min.js', array( 'jquery' ), $rand, true );
 
-	wp_enqueue_script( 'mCustomScrollbar', get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js', array( 'jquery' ), '2013-07-18', true );
-	wp_enqueue_script( 'scrollpane_mousejs', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', array( 'jquery' ), '2013-07-18', true );
-	wp_enqueue_style( 'mCustomScrollbar', get_stylesheet_directory_uri() . '/css/jquery.mCustomScrollbar.css' , array(), null );
-	wp_enqueue_script( 'commons-script', get_stylesheet_directory_uri() . '/js/functions.js', array( 'jquery', 'jrespond','mCustomScrollbar', 'fancybox' ), $rand, true );
+	// STYLES 
+	wp_enqueue_style( 'fonts-awesome', 		'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' , 		array(), null );
+	wp_enqueue_style( 'typos_css', 			 get_stylesheet_directory_uri() . '/css/LignesDeFront.css?='.$rand , 			array(), null );
+	wp_enqueue_style( 'mCustomScrollbar', 	 get_stylesheet_directory_uri() . '/css/jquery.mCustomScrollbar.css' , 			array(), null );
+	wp_enqueue_style( 'fancybox', 			 get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox.css' , 			array(), null );
 
-	wp_enqueue_script( 'fitvid', get_stylesheet_directory_uri() . '/js/jquery.fitvids.js', array( 'jquery' ), $rand, true );
+	// SCRIPTS
+	wp_enqueue_script( 'jrespond', 			 get_stylesheet_directory_uri() . '/js/jRespond.min.js', 						array( 'jquery' ), $rand, true );
+	wp_enqueue_script( 'mCustomScrollbar',   get_stylesheet_directory_uri() . '/js/jquery.mCustomScrollbar.concat.min.js',  array( 'jquery' ), '2013-07-18', true );
+	wp_enqueue_script( 'scrollpane_mousejs', get_stylesheet_directory_uri() . '/js/jquery.mousewheel.js', 					array( 'jquery' ), '2013-07-18', true );
+	wp_enqueue_script( 'fitvid', 			 get_stylesheet_directory_uri() . '/js/jquery.fitvids.js', 						array( 'jquery' ), $rand, true );
+	wp_enqueue_script( 'fancybox', 			 get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox.js', 				array( 'jquery' ), $rand, true );
+	wp_enqueue_script( 'mousewheel', 		 get_stylesheet_directory_uri() . '/js/jquery.mousewheel-3.0.6.pack.js', 		array( 'jquery' ), $rand, true );
+	wp_enqueue_script( 'commons-script', 	 get_stylesheet_directory_uri() . '/js/functions.js', 							array( 'jquery', 'jrespond','mCustomScrollbar', 'fancybox' ), $rand, true );
 
-	wp_enqueue_style( 'fancybox', get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox.css' , array(), null );
-	wp_enqueue_script( 'fancybox', get_stylesheet_directory_uri() . '/fancybox/jquery.fancybox.js', array( 'jquery' ), $rand, true );
-	wp_enqueue_script( 'mousewheel', get_stylesheet_directory_uri() . '/js/jquery.mousewheel-3.0.6.pack.js', array( 'jquery' ), $rand, true );
-
-	/**
-	 * POLICES
-	 */
-	// akkurat + century gothic
-	wp_enqueue_style( 'typos_css', get_stylesheet_directory_uri() . '/css/LignesDeFront.css?='.$rand , array(), null );
-	// police symboles bootstrap
-	wp_enqueue_style( 'fonts-awesome', 'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' , array(), null );
 }
 add_action( 'wp_enqueue_scripts', 'ldf_scripts_styles' );
 
@@ -281,11 +277,11 @@ if ( ! function_exists( 'twentythirteen_entry_meta' ) ) :
 	function twentythirteen_entry_meta() {
 		
 
-		if ( ! has_post_format( 'link' ) && 'post' == get_post_type() )
+		if ( ! has_post_format( 'link' ) && ('post' == get_post_type() || 'restitutions' == get_post_type()) )
 			twentythirteen_entry_date();
 
-		// Translators: used between list items, there is a space after the comma.
-		$categories_list = get_the_category_list( __( '&nbsp;/&nbsp;', 'twentythirteen' ) );
+			// Translators: used between list items, there is a space after the comma.
+			$categories_list = get_the_category_list( __( '&nbsp;/&nbsp;', 'twentythirteen' ) );
 		if ( $categories_list ) {
 			echo '/ <span class="categories-links">' . $categories_list . '</span>';
 		}
@@ -405,7 +401,22 @@ if ( ! function_exists( 'twentythirteen_paging_nav' ) ) :
 	}
 endif;
 
+/**
+ * AJOUTER LES POSTS PUBLIÉS DANS LE FUTUR
+ */
 
+add_filter('the_posts', 'show_future_posts');
+
+function show_future_posts($posts)
+{
+   global $wp_query, $wpdb;
+   
+   if(is_single() && $wp_query->post_count == 0) {
+      $posts = $wpdb->get_results($wp_query->request);
+   }
+
+   return $posts;
+}
 
 
 /**
@@ -419,6 +430,68 @@ function custom_styles() {
 	$out .='</style>';
 	echo $out;
 }
+
+
+
+
+/**
+ * POUR AJOUTER L'ÉDITEUR WYSIWYG AUX CATÉGORIES ET 
+ * http://www.paulund.co.uk/add-tinymce-editor-category-description
+ */
+
+// remove the html filtering
+remove_filter( 'pre_term_description',  'wp_filter_kses' );
+remove_filter( 'term_description', 		'wp_kses_data' );
+
+
+add_filter('edit_category_form_fields', 'taxonomy_description');
+add_filter('edit_tag_form_fields', 		'taxonomy_description');
+function taxonomy_description($tag)
+{
+    ?>
+        <table class="form-table">
+            <tr class="form-field">
+                <th scope="row" valign="top"><label for="description"><?php _ex('Description', 'Taxonomy Description'); ?></label></th>
+                <td>
+                <?php
+                    $settings = array(
+                    	'wpautop' => true,
+                    	'media_buttons' => false,
+                    	'quicktags' => true,
+                    	'textarea_rows' => '15',
+                    	'textarea_name' => 'description',
+                    	'teeny' => true,
+                    	);
+                    echo $content = html_entity_decode(wp_kses_post($tag->description , ENT_QUOTES, 'UTF-8'));
+
+                    wp_editor($content, 'cat_description', $settings);
+                ?>
+                <br />
+                <span class="description"><?php _e('The description is not prominent by default; however, some themes may show it.'); ?></span>
+                </td>
+            </tr>
+        </table>
+    <?php
+}
+
+add_action('admin_head', 'remove_default_category_description');
+function remove_default_category_description()
+{
+    global $current_screen;
+    if ( $current_screen->id == ('edit-category' || 'edit-tags') )
+    {
+    ?>
+        <script type="text/javascript">
+        jQuery(function($) {
+            $('textarea#description').closest('tr.form-field').remove();
+        });
+        </script>
+    <?php
+    }
+}
+// -----------------------------------------------------
+
+
 
 /**
  * SUPPRIME la marge top lorsque l'on est admin
