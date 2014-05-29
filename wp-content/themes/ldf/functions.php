@@ -187,7 +187,7 @@ add_filter( 'get_search_form', 'my_search_form' );
 function ldf_scripts_styles() {
 	$rand = rand(5, 150000);
 
-	wp_enqueue_style( 'ldf-style', get_stylesheet_uri(), array('twentythirteen-style','fancybox','mCustomScrollbar'), '2014-05-19.4' );
+	wp_enqueue_style( 'ldf-style', get_stylesheet_uri(), array('twentythirteen-style','fancybox','mCustomScrollbar'), '2014-05-19.5' );
 
 	// STYLES 
 	wp_enqueue_style( 'fonts-awesome', 		'http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' , 		array(), null );
